@@ -7,11 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/Models/model_account.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/password.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/password.csproj" afterDir="false" />
-    </list>
+    <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

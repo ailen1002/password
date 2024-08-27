@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace password.Models;
 
-public class ModelAccount
+public class AccountInfo
 {
     [Key]
     public int Id { get; set; }

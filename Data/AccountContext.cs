@@ -6,7 +6,7 @@ namespace password.Data;
 
 public class AccountContext : DbContext
 {
-    public DbSet<ModelAccount> AccountInfos { get; set; }
+    public DbSet<AccountInfo> AccountInfo { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -18,7 +18,7 @@ public class AccountContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<ModelAccount>()
+        modelBuilder.Entity<AccountInfo>()
             .Property(a => a.CreationDate)
             .HasDefaultValueSql("datetime('now', 'localtime')");
     }

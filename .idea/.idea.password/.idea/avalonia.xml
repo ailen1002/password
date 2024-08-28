@@ -3,6 +3,9 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="App.axaml" value="password.csproj" />
+        <entry key="Views/AddAccount.axaml" value="password.csproj" />
+        <entry key="Views/AddAccountWindow.axaml" value="password.csproj" />
         <entry key="Views/MainWindow.axaml" value="password.csproj" />
       </map>
     </option>

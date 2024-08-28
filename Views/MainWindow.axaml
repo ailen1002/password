@@ -1,20 +1,42 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:password.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="password.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="password">
-
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+<Window
+    Height="600"
+    Title="Main Window"
+    Width="800"
+    x:Class="password.Views.MainWindow"
+    x:DataType="viewModels:MainWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:viewModels="clr-namespace:password.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <DataGrid
+            AutoGenerateColumns="False"
+            GridLinesVisibility="All"
+            HorizontalAlignment="Stretch"
+            ItemsSource="{Binding Accounts}"
+            VerticalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
+                <DataGridTextColumn Binding="{Binding AccountName}" Header="Account Name" />
+                <DataGridTextColumn Binding="{Binding Account}" Header="Account" />
+                <DataGridTextColumn Binding="{Binding Password}" Header="Password" />
+                <DataGridTextColumn Binding="{Binding CreationDate}" Header="Creation Date" />
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Button CommandParameter="{Binding}" Content="Edit" />
+                                <Button CommandParameter="{Binding}" Content="Delete" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            Command="{Binding ShowAddAccountWindowCommand}"
+            Content="Add Account"
+            HorizontalAlignment="Right"
+            Margin="10"
+            VerticalAlignment="Bottom" />
+    </Grid>
 </Window>

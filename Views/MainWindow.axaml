@@ -3,16 +3,18 @@
     Title="Main Window"
     Width="800"
     x:Class="password.Views.MainWindow"
-    x:DataType="viewModels:MainWindowViewModel"
+    x:DataType="vm:MainWindowViewModel"
     xmlns="https://github.com/avaloniaui"
-    xmlns:viewModels="clr-namespace:password.ViewModels"
+    xmlns:vm="using:password.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
         <DataGrid
             AutoGenerateColumns="False"
             GridLinesVisibility="All"
             HorizontalAlignment="Stretch"
+            IsReadOnly="True"
             ItemsSource="{Binding Accounts}"
+            SelectedItem="{Binding SelectedAccount}"
             VerticalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
@@ -20,23 +22,27 @@
                 <DataGridTextColumn Binding="{Binding Account}" Header="Account" />
                 <DataGridTextColumn Binding="{Binding Password}" Header="Password" />
                 <DataGridTextColumn Binding="{Binding CreationDate}" Header="Creation Date" />
-                <DataGridTemplateColumn Header="Actions">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Spacing="5">
-                                <Button CommandParameter="{Binding}" Content="Edit" />
-                                <Button CommandParameter="{Binding}" Content="Delete" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button
-            Command="{Binding ShowAddAccountWindowCommand}"
-            Content="Add Account"
+
+        <!--  按钮区域  -->
+        <StackPanel
             HorizontalAlignment="Right"
             Margin="10"
-            VerticalAlignment="Bottom" />
+            Orientation="Horizontal"
+            VerticalAlignment="Bottom">
+            <Button
+                Command="{Binding ShowAddAccountWindowCommand}"
+                Content="Add Account"
+                Margin="5,0" />
+            <Button
+                Command="{Binding EditCommand}"
+                Content="Edit Account"
+                Margin="5,0" />
+            <Button
+                Command="{Binding DeleteCommand}"
+                Content="Delete Account"
+                Margin="5,0" />
+        </StackPanel>
     </Grid>
 </Window>

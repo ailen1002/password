@@ -9,6 +9,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/AddAccountViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/AddAccountViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/AddAccount.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/AddAccount.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +24,10 @@
     <option name="autoShow" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a0b45743773945a3bb67ca6440ae9eadf9c00/eb/081b6000/Window.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a39616e0542f4dedbc726cf1302e0c8614400/8d/ed57e2bf/ReflectionBindingExtension.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/81d12998a2b0f1d072b9e6edfb2611ade9fd8782e48a547faaedd88587fbc59/ReactiveCommand.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Models/account.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d489993b8fc9365570606c70f16434c231dcefac791e28ff71514c948d0/StyledElement.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -83,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1724717076725</updated>
       <workItem from="1724717078317" duration="2280000" />
-      <workItem from="1724803137883" duration="5588000" />
+      <workItem from="1724803137883" duration="21480000" />
     </task>
     <servers />
   </component>

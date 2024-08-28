@@ -50,18 +50,16 @@ namespace password.ViewModels
             }
             else
             {
-                // 如果输入为空，可以使用对话框或者其他方式提示用户
+                // Todo 弹窗提示输入正确的信息
             }
         }
 
         private void CloseWindow()
         {
             // 关闭窗口逻辑，假设 DataContext 绑定的是这个 ViewModel
-            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                var window = desktop.Windows.FirstOrDefault(w => w.DataContext == this);
-                window?.Close();
-            }
+            if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop) return;
+            var window = desktop.Windows.FirstOrDefault(w => w.DataContext == this);
+            window?.Close();
         }
     }
 }

@@ -24,12 +24,12 @@
             Orientation="Horizontal">
             <Button
                 Command="{Binding AddCommand}"
-                Content="添加"
+                Content="confirm"
                 Margin="0,0,10,0"
                 Width="80" />
             <Button
                 Command="{Binding CancelCommand}"
-                Content="取消"
+                Content="cancel"
                 Width="80" />
         </StackPanel>
     </StackPanel>

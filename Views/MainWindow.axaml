@@ -16,7 +16,7 @@
             GridLinesVisibility="All"
             HorizontalAlignment="Stretch"
             IsReadOnly="True"
-            ItemsSource="{Binding Accounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding Accounts}"
             SelectedItem="{Binding SelectedAccount}"
             VerticalAlignment="Stretch">
             <DataGrid.Columns>

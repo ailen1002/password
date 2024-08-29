@@ -8,12 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/ViewModels/EditAccountViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/EditAccount.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModels/AddAccountViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/AddAccountViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/AddAccount.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/AddAccount.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/password.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/password.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +32,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a39616e0542f4dedbc726cf1302e0c8614400/8d/ed57e2bf/ReflectionBindingExtension.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/81d12998a2b0f1d072b9e6edfb2611ade9fd8782e48a547faaedd88587fbc59/ReactiveCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d489993b8fc9365570606c70f16434c231dcefac791e28ff71514c948d0/StyledElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Views/EditAccount.axaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -90,7 +95,8 @@
       <option name="presentableId" value="Default" />
       <updated>1724717076725</updated>
       <workItem from="1724717078317" duration="2280000" />
-      <workItem from="1724803137883" duration="21480000" />
+      <workItem from="1724803137883" duration="24215000" />
+      <workItem from="1724889482452" duration="13688000" />
     </task>
     <servers />
   </component>

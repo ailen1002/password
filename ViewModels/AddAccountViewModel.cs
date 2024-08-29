@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reactive;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -56,10 +57,19 @@ namespace password.ViewModels
 
         private void CloseWindow()
         {
-            // 关闭窗口逻辑，假设 DataContext 绑定的是这个 ViewModel
             if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop) return;
+            
             var window = desktop.Windows.FirstOrDefault(w => w.DataContext == this);
-            window?.Close();
+
+            if (window == null) return;
+            try
+            {
+                window.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to close window: {ex.Message}");
+            }
         }
     }
 }

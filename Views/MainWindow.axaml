@@ -2,9 +2,12 @@
     Height="600"
     Title="Main Window"
     Width="800"
+    mc:Ignorable="d"
     x:Class="password.Views.MainWindow"
     x:DataType="vm:MainWindowViewModel"
     xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:password.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
@@ -13,7 +16,7 @@
             GridLinesVisibility="All"
             HorizontalAlignment="Stretch"
             IsReadOnly="True"
-            ItemsSource="{Binding Accounts}"
+            ItemsSource="{Binding Accounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding SelectedAccount}"
             VerticalAlignment="Stretch">
             <DataGrid.Columns>
@@ -32,16 +35,20 @@
             Orientation="Horizontal"
             VerticalAlignment="Bottom">
             <Button
-                Command="{Binding ShowAddAccountWindowCommand}"
-                Content="Add Account"
-                Margin="5,0" />
-            <Button
                 Command="{Binding EditCommand}"
                 Content="Edit Account"
                 Margin="5,0" />
             <Button
                 Command="{Binding DeleteCommand}"
                 Content="Delete Account"
+                Margin="5,0" />
+            <Button
+                Command="{Binding ShowAddAccountWindowCommand}"
+                Content="Add Account"
+                Margin="5,0" />
+            <Button
+                Command="{Binding ReloadCommand}"
+                Content="reload Account"
                 Margin="5,0" />
         </StackPanel>
     </Grid>

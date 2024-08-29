@@ -46,10 +46,6 @@
                 Command="{Binding ShowAddAccountWindowCommand}"
                 Content="Add Account"
                 Margin="5,0" />
-            <Button
-                Command="{Binding ReloadCommand}"
-                Content="reload Account"
-                Margin="5,0" />
         </StackPanel>
     </Grid>
 </Window>

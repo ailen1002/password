@@ -26,7 +26,6 @@ namespace password.ViewModels
         public ReactiveCommand<Unit, Unit> ShowAddAccountWindowCommand { get; }
         public ReactiveCommand<Unit, Unit> EditCommand { get; }
         public ReactiveCommand<Unit, Unit> DeleteCommand { get; }
-        public ReactiveCommand<Unit, Unit> ReloadCommand { get; }
 
         public MainWindowViewModel(IAccountService accountService)
         {
@@ -36,7 +35,6 @@ namespace password.ViewModels
             ShowAddAccountWindowCommand = ReactiveCommand.Create(OpenAddAccountWindow);
             EditCommand = ReactiveCommand.Create(OpenEditAccountWindow, this.WhenAnyValue(x => x.SelectedAccount).Select(account => account != null));
             DeleteCommand = ReactiveCommand.Create(DeleteAccount, this.WhenAnyValue(x => x.SelectedAccount).Select(account => account != null));
-            ReloadCommand = ReactiveCommand.Create(Reload);
             LoadAccounts();
         }
 
@@ -81,11 +79,6 @@ namespace password.ViewModels
             if (result != ButtonResult.Yes) return;
             _accountService.DeleteAccount(SelectedAccount.Id);
             LoadAccounts();
-        }
-        
-        private void Reload()
-        {
-            _accountService.LoadAccounts();
         }
     }
 }

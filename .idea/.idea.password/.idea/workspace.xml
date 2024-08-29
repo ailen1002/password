@@ -7,6 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
       <change afterPath="$PROJECT_DIR$/ViewModels/EditAccountViewModel.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Views/EditAccount.axaml" afterDir="false" />
@@ -19,6 +20,9 @@
       <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/password.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/password.csproj" afterDir="false" />
     </list>
+=======
+    <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

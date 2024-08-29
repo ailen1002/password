@@ -3,7 +3,6 @@ using System.Linq;
 using System.Reactive;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using MsBox.Avalonia;
 using ReactiveUI;
 using password.Interfaces;
 using password.Models;
@@ -13,7 +12,7 @@ namespace password.ViewModels
     public class EditAccountViewModel : ViewModelBase
     {
         private readonly IAccountService _accountService;
-        private AccountInfo AccountInfo { get; set; }
+        public AccountInfo AccountInfo { get; set; }
         public ReactiveCommand<Unit, Unit> UpdateCommand { get; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
 

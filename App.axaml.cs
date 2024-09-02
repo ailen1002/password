@@ -1,6 +1,11 @@
+using System;
+using System.Linq;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Styling;
+using Avalonia.Themes.Fluent;
 using password.Data;
 using password.Services;
 using password.ViewModels;
@@ -32,5 +37,10 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+    public void ChangeThemeVariant(ThemeVariant themeVariant)
+    {
+        // 切换到传入的主题
+        RequestedThemeVariant = themeVariant;
     }
 }

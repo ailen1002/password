@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using password.Data;
 using password.Interfaces;
 using password.Models;
@@ -51,12 +53,18 @@ namespace password.Services
             ArgumentNullException.ThrowIfNull(accountInfo);
 
             var existingAccount = context.AccountInfo.Find(accountInfo.Id);
-            if (existingAccount == null) throw new InvalidOperationException("Account not found");
-
             // 更新账户信息
-            existingAccount.AccountName = accountInfo.AccountName;
-            existingAccount.Account = accountInfo.Account;
-            existingAccount.Password = accountInfo.Password;
+            if (existingAccount != null)
+            {
+                existingAccount.AccountName = accountInfo.AccountName;
+                existingAccount.Account = accountInfo.Account;
+                existingAccount.Password = accountInfo.Password;
+            }
+            else
+            {
+                MessageBoxManager.GetMessageBoxStandard("删除账户", "请选择一个账号", ButtonEnum.YesNo, Icon.Info);
+            }
+
             context.SaveChanges();
         }
 
@@ -64,9 +72,14 @@ namespace password.Services
         public void DeleteAccount(int accountId)
         {
             var account = context.AccountInfo.Find(accountId);
-            if (account == null) throw new InvalidOperationException("Account not found");
-
-            context.AccountInfo.Remove(account);
+            if (account != null)
+            {
+                context.AccountInfo.Remove(account);
+            }
+            else
+            {
+                MessageBoxManager.GetMessageBoxStandard("删除账户", "请选择一个账号", ButtonEnum.YesNo, Icon.Info);
+            }
             context.SaveChanges();
         }
     }

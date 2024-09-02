@@ -1,5 +1,5 @@
 <Application
-    RequestedThemeVariant="Default"
+    RequestedThemeVariant="Light"
     x:Class="password.App"
     xmlns="https://github.com/avaloniaui"
     xmlns:local="using:password"
@@ -11,7 +11,68 @@
     </Application.DataTemplates>
 
     <Application.Styles>
-        <FluentTheme />
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <ColorPaletteResources
+                    Accent="#ff0063b1"
+                    AltHigh="White"
+                    AltLow="White"
+                    AltMedium="White"
+                    AltMediumHigh="White"
+                    AltMediumLow="White"
+                    BaseHigh="Black"
+                    BaseLow="#ff008eff"
+                    BaseMedium="#ff0059c1"
+                    BaseMediumHigh="#ff003597"
+                    BaseMediumLow="#ff0047ac"
+                    ChromeAltLow="#ff003597"
+                    ChromeBlackHigh="Black"
+                    ChromeBlackLow="#ff008eff"
+                    ChromeBlackMedium="#ff003597"
+                    ChromeBlackMediumLow="#ff0059c1"
+                    ChromeDisabledHigh="#ff008eff"
+                    ChromeDisabledLow="#ff0059c1"
+                    ChromeGray="#ff0047ac"
+                    ChromeHigh="#ff008eff"
+                    ChromeLow="#ff92d6ff"
+                    ChromeMedium="#ff75c8ff"
+                    ChromeMediumLow="#ff92d6ff"
+                    ChromeWhite="White"
+                    ListLow="#ff75c8ff"
+                    ListMedium="#ff008eff"
+                    RegionColor="#fffffdff"
+                    x:Key="Light" />
+                <ColorPaletteResources
+                    Accent="#ff37346b"
+                    AltHigh="Black"
+                    AltLow="Black"
+                    AltMedium="Black"
+                    AltMediumHigh="Black"
+                    AltMediumLow="Black"
+                    BaseHigh="White"
+                    BaseLow="#ffb01fcc"
+                    BaseMedium="#ffdc8deb"
+                    BaseMediumHigh="#ffe7a9f3"
+                    BaseMediumLow="#ffc656dc"
+                    ChromeAltLow="#ffe7a9f3"
+                    ChromeBlackHigh="Black"
+                    ChromeBlackLow="#ffe7a9f3"
+                    ChromeBlackMedium="Black"
+                    ChromeBlackMediumLow="Black"
+                    ChromeDisabledHigh="#ffb01fcc"
+                    ChromeDisabledLow="#ffdc8deb"
+                    ChromeGray="#ffd172e3"
+                    ChromeHigh="#ffd172e3"
+                    ChromeLow="#ff670681"
+                    ChromeMedium="#ff790c94"
+                    ChromeMediumLow="#ff9e19b9"
+                    ChromeWhite="White"
+                    ListLow="#ff790c94"
+                    ListMedium="#ffb01fcc"
+                    RegionColor="#ff262738"
+                    x:Key="Dark" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
     </Application.Styles>
 </Application>

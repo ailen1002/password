@@ -6,6 +6,7 @@
 ​    Avalonia.Fonts.Inter
 ​    Avalonia.ReactiveUI
 ​    Avalonia.Themes.Fluent
+​    MessageBox.Avalonia
 ​    Microsoft.Data.Sqlite
 ​    Microsoft.EntityFrameworkCore
 ​    Microsoft.EntityFrameworkCore.Sqlite.Core

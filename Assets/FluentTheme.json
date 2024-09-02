@@ -1,0 +1,14 @@
+{
+  "Id": "FluntTheme.json",
+  "Name": "FluntTheme.json",
+  "LightRegionColor": "#fffffdff",
+  "DarkRegionColor": "#ff262738",
+  "LightBaseColor": "#ff008eff",
+  "DarkBaseColor": "#ffb01fcc",
+  "LightPrimaryColor": "#ff0063b1",
+  "DarkPrimaryColor": "#ff37346b",
+  "LightBaseOverrides": [],
+  "DarkBaseOverrides": [],
+  "LightPrimaryOverrides": [],
+  "DarkPrimaryOverrides": []
+}

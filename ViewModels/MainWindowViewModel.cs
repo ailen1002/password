@@ -1,6 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Linq;
+using Avalonia;
+using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
+using Avalonia.Media;
+using Avalonia.Styling;
 using password.Models;
 using password.Views;
 using ReactiveUI;
@@ -14,7 +19,8 @@ namespace password.ViewModels
     {
         private readonly IAccountService _accountService;
         private AccountInfo _selectedAccount;
-
+        private bool _isDarkMode;
+        private IBrush _panelBackground;
         public ObservableCollection<AccountInfo> Accounts { get; set; }
 
         public AccountInfo SelectedAccount
@@ -22,7 +28,36 @@ namespace password.ViewModels
             get => _selectedAccount;
             set => this.RaiseAndSetIfChanged(ref _selectedAccount, value);
         }
-
+        public bool IsDarkMode
+        {
+            get => _isDarkMode;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _isDarkMode, value);
+                ChangeTheme();
+            }
+        }
+        private void ChangeTheme()
+        {
+            var app = (App)Application.Current;
+            if (IsDarkMode)
+            {
+                // Dark 主题背景颜色
+                app.ChangeThemeVariant(ThemeVariant.Dark);
+                PanelBackground = Brushes.DarkMagenta;
+            }
+            else
+            {
+                // Light 主题背景颜色
+                app.ChangeThemeVariant(ThemeVariant.Light);
+                PanelBackground = Brushes.DodgerBlue;
+            }
+        }
+        public IBrush PanelBackground
+        {
+            get => _panelBackground;
+            set => this.RaiseAndSetIfChanged(ref _panelBackground, value);
+        }
         public ReactiveCommand<Unit, Unit> ShowAddAccountWindowCommand { get; }
         public ReactiveCommand<Unit, Unit> EditCommand { get; }
         public ReactiveCommand<Unit, Unit> DeleteCommand { get; }
@@ -31,13 +66,14 @@ namespace password.ViewModels
         {
             _accountService = accountService;
             Accounts = new ObservableCollection<AccountInfo>();
-
+            PanelBackground = Brushes.DodgerBlue;
+            
             ShowAddAccountWindowCommand = ReactiveCommand.Create(OpenAddAccountWindow);
             EditCommand = ReactiveCommand.Create(OpenEditAccountWindow, this.WhenAnyValue(x => x.SelectedAccount).Select(account => account != null));
             DeleteCommand = ReactiveCommand.Create(DeleteAccount, this.WhenAnyValue(x => x.SelectedAccount).Select(account => account != null));
             LoadAccounts();
         }
-
+        
         private void LoadAccounts()
         {
             var accounts = _accountService.LoadAccounts();

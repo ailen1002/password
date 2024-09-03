@@ -21,14 +21,14 @@ namespace password.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class zh_CN {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal zh_CN() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace password.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("password.Resources.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("password.Resources.zh-CN", typeof(zh_CN).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,29 +60,38 @@ namespace password.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Account.
+        ///   Looks up a localized string similar to 新建.
         /// </summary>
-        internal static string Add_Account {
+        internal static string Add {
             get {
-                return ResourceManager.GetString("Add Account", resourceCulture);
+                return ResourceManager.GetString("Add", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Account.
+        ///   Looks up a localized string similar to 删除.
         /// </summary>
-        internal static string Delete_Account {
+        internal static string Delete {
             get {
-                return ResourceManager.GetString("Delete Account", resourceCulture);
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Account.
+        ///   Looks up a localized string similar to 编辑.
         /// </summary>
-        internal static string Edit_Account {
+        internal static string Edit {
             get {
-                return ResourceManager.GetString("Edit Account", resourceCulture);
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 中.
+        /// </summary>
+        internal static string LanguageButtonText {
+            get {
+                return ResourceManager.GetString("LanguageButtonText", resourceCulture);
             }
         }
     }

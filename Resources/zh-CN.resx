@@ -18,13 +18,16 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Edit Account" xml:space="preserve">
-        <value>Edit Account</value>
+    <data name="Edit" xml:space="preserve">
+        <value>编辑</value>
     </data>
-    <data name="Delete Account" xml:space="preserve">
-        <value>Delete Account</value>
+    <data name="Delete" xml:space="preserve">
+        <value>删除</value>
     </data>
-    <data name="Add Account" xml:space="preserve">
-        <value>Add Account</value>
+    <data name="Add" xml:space="preserve">
+        <value>新建</value>
+    </data>
+    <data name="LanguageButtonText" xml:space="preserve">
+        <value>中</value>
     </data>
 </root>

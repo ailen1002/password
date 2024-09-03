@@ -15,7 +15,18 @@
             Background="{Binding PanelBackground}"
             DockPanel.Dock="Top"
             Height="50">
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+            <StackPanel
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+                <Button
+                    Command="{Binding ChangeLanguageCommand}"
+                    Content="{Binding LanguageButtonText}"
+                    Height="30"
+                    HorizontalContentAlignment="Center"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Width="40" />
                 <ToggleButton
                     BorderBrush="White"
                     BorderThickness="2"
@@ -51,15 +62,15 @@
                 VerticalAlignment="Bottom">
                 <Button
                     Command="{Binding EditCommand}"
-                    Content="Edit Account"
+                    Content="{Binding Edit}"
                     Margin="5,0" />
                 <Button
                     Command="{Binding DeleteCommand}"
-                    Content="Delete Account"
+                    Content="{Binding Delete}"
                     Margin="5,0" />
                 <Button
                     Command="{Binding ShowAddAccountWindowCommand}"
-                    Content="Add Account"
+                    Content="{Binding Add}"
                     Margin="5,0" />
             </StackPanel>
         </Grid>

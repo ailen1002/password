@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Linq;
 using Avalonia;
-using Avalonia.Controls.Primitives;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
 using password.Models;
@@ -155,14 +152,7 @@ namespace password.ViewModels
         {
             var currentCulture = _localizationService.CurrentCulture.Name;
 
-            if (currentCulture == "zh-CN")
-            {
-                _localizationService.ChangeCulture("en-US");
-            }
-            else
-            {
-                _localizationService.ChangeCulture("zh-CN");
-            }
+            _localizationService.ChangeCulture(currentCulture == "zh-CN" ? "en-US" : "zh-CN");
         }
         private void UpdateLocalizedTexts()
         {

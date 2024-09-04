@@ -210,6 +210,7 @@ namespace password.ViewModels
             try
             {
                 window.Close();
+                
             }
             catch (Exception ex)
             {

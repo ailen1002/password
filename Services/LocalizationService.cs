@@ -10,9 +10,9 @@ public class LocalizationService
 {
     private readonly Dictionary<string, ResourceManager> _resourceManagers;
     private ResourceManager _currentResourceManager;
-    public  CultureInfo CurrentCulture => CultureInfo.CurrentUICulture;
+    public CultureInfo CurrentCulture => CultureInfo.CurrentUICulture;
     // 语言切换事件
-    public event Action LanguageChanged;
+    public event Action? LanguageChanged;
     public LocalizationService()
     {
         // 初始化资源管理器

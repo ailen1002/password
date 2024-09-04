@@ -95,11 +95,13 @@
             <Button
                 Command="{Binding AddCommand}"
                 Content="{Binding Confirm}"
+                HorizontalContentAlignment="Center"
                 Margin="0,0,10,0"
                 Width="80" />
             <Button
                 Command="{Binding CancelCommand}"
                 Content="{Binding Cancel}"
+                HorizontalContentAlignment="Center"
                 Width="80" />
         </StackPanel>
     </Grid>

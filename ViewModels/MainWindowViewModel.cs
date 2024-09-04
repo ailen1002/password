@@ -122,7 +122,7 @@ namespace password.ViewModels
         {
             var addAccountWindow = new AddAccount
             {
-                DataContext = new AddAccountViewModel(_accountService,_localizationService)
+                DataContext = new AddAccountViewModel(_accountService, _localizationService)
             };
 
             addAccountWindow.Show();
@@ -133,7 +133,7 @@ namespace password.ViewModels
         {
             var editAccountWindow = new EditAccount
             {
-                DataContext = new EditAccountViewModel(_accountService, SelectedAccount)
+                DataContext = new EditAccountViewModel(_accountService, _localizationService, SelectedAccount)
             };
 
             editAccountWindow.Show();

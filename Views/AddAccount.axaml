@@ -12,13 +12,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <StackPanel Margin="20">
-        <TextBlock Text="账户名称" />
+        <TextBlock Text="{Binding AccountNameLabel}" />
         <TextBox Text="{Binding AccountName}" />
 
-        <TextBlock Margin="0,10,0,0" Text="账号" />
+        <TextBlock Margin="0,10,0,0" Text="{Binding AccountLabel}" />
         <TextBox Text="{Binding Account}" />
 
-        <TextBlock Margin="0,10,0,0" Text="密码" />
+        <TextBlock Margin="0,10,0,0" Text="{Binding PasswordLabel}" />
         <TextBox Text="{Binding Password}" />
 
         <StackPanel
@@ -27,12 +27,12 @@
             Orientation="Horizontal">
             <Button
                 Command="{Binding AddCommand}"
-                Content="confirm"
+                Content="{Binding Confirm}"
                 Margin="0,0,10,0"
                 Width="80" />
             <Button
                 Command="{Binding CancelCommand}"
-                Content="cancel"
+                Content="{Binding Cancel}"
                 Width="80" />
         </StackPanel>
     </StackPanel>

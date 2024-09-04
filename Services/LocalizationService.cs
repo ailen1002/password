@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Resources;
 using System.Threading;
@@ -9,7 +10,9 @@ public class LocalizationService
 {
     private readonly Dictionary<string, ResourceManager> _resourceManagers;
     private ResourceManager _currentResourceManager;
-    public CultureInfo CurrentCulture => CultureInfo.CurrentUICulture;
+    public  CultureInfo CurrentCulture => CultureInfo.CurrentUICulture;
+    // 语言切换事件
+    public event Action LanguageChanged;
     public LocalizationService()
     {
         // 初始化资源管理器
@@ -28,10 +31,13 @@ public class LocalizationService
         var culture = new CultureInfo(cultureName);
         CultureInfo.CurrentUICulture = culture;
         _currentResourceManager = _resourceManagers[cultureName];
+        
+        // 触发语言切换事件
+        LanguageChanged?.Invoke();
     }
 
     public string GetString(string key)
     {
-        return _currentResourceManager.GetString(key, CultureInfo.CurrentUICulture);
+        return _currentResourceManager.GetString(key, CultureInfo.CurrentUICulture) ?? throw new InvalidOperationException();
     }
 }

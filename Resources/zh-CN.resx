@@ -30,4 +30,19 @@
     <data name="LanguageButtonText" xml:space="preserve">
         <value>中</value>
     </data>
+    <data name="Confirm" xml:space="preserve">
+        <value>确认</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>取消</value>
+    </data>
+    <data name="AccountNameLabel" xml:space="preserve">
+        <value>账号名称</value>
+    </data>
+    <data name="AccountLabel" xml:space="preserve">
+        <value>账号</value>
+    </data>
+    <data name="PasswordLabel" xml:space="preserve">
+        <value>密码</value>
+    </data>
 </root>

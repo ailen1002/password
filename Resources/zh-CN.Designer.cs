@@ -60,11 +60,47 @@ namespace password.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 账号.
+        /// </summary>
+        internal static string AccountLabel {
+            get {
+                return ResourceManager.GetString("AccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 账号名称.
+        /// </summary>
+        internal static string AccountNameLabel {
+            get {
+                return ResourceManager.GetString("AccountNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 新建.
         /// </summary>
         internal static string Add {
             get {
                 return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 取消.
+        /// </summary>
+        internal static string cancel {
+            get {
+                return ResourceManager.GetString("cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 确认.
+        /// </summary>
+        internal static string confirm {
+            get {
+                return ResourceManager.GetString("confirm", resourceCulture);
             }
         }
         
@@ -92,6 +128,15 @@ namespace password.Resources {
         internal static string LanguageButtonText {
             get {
                 return ResourceManager.GetString("LanguageButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 密码.
+        /// </summary>
+        internal static string PasswordLabel {
+            get {
+                return ResourceManager.GetString("PasswordLabel", resourceCulture);
             }
         }
     }

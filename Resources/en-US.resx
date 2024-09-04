@@ -30,4 +30,19 @@
     <data name="LanguageButtonText" xml:space="preserve">
         <value>En</value>
     </data>
+    <data name="Confirm" xml:space="preserve">
+        <value>confirm</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>cancel</value>
+    </data>
+    <data name="AccountNameLabel" xml:space="preserve">
+        <value>AccountName</value>
+    </data>
+    <data name="AccountLabel" xml:space="preserve">
+        <value>Account</value>
+    </data>
+    <data name="PasswordLabel" xml:space="preserve">
+        <value>Password</value>
+    </data>
 </root>

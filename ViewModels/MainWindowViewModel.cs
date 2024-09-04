@@ -98,6 +98,8 @@ namespace password.ViewModels
             Delete = _localizationService.GetString("Delete");
             Add = _localizationService.GetString("Add");
             LanguageButtonText = _localizationService.GetString("LanguageButtonText");
+            // 订阅语言切换事件
+            _localizationService.LanguageChanged += UpdateLocalizedTexts;
             
             ShowAddAccountWindowCommand = ReactiveCommand.Create(OpenAddAccountWindow);
             EditCommand = ReactiveCommand.Create(OpenEditAccountWindow, this.WhenAnyValue(x => x.SelectedAccount).Select(account => account != null));
@@ -120,7 +122,7 @@ namespace password.ViewModels
         {
             var addAccountWindow = new AddAccount
             {
-                DataContext = new AddAccountViewModel(_accountService)
+                DataContext = new AddAccountViewModel(_accountService,_localizationService)
             };
 
             addAccountWindow.Show();
@@ -148,11 +150,11 @@ namespace password.ViewModels
             _accountService.DeleteAccount(SelectedAccount.Id);
             LoadAccounts();
         }
+        // 切换语言
         private void ChangeLanguage()
         {
             var currentCulture = _localizationService.CurrentCulture.Name;
 
-            // 切换语言
             if (currentCulture == "zh-CN")
             {
                 _localizationService.ChangeCulture("en-US");
@@ -161,7 +163,9 @@ namespace password.ViewModels
             {
                 _localizationService.ChangeCulture("zh-CN");
             }
-            // 更新界面文本
+        }
+        private void UpdateLocalizedTexts()
+        {
             Edit = _localizationService.GetString("Edit");
             Delete = _localizationService.GetString("Delete");
             Add = _localizationService.GetString("Add");

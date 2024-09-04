@@ -51,6 +51,7 @@
                     <DataGridTextColumn Binding="{Binding Account}" Header="Account" />
                     <DataGridTextColumn Binding="{Binding Password}" Header="Password" />
                     <DataGridTextColumn Binding="{Binding CreationDate}" Header="Creation Date" />
+                    <DataGridTextColumn Binding="{Binding LastUpdated}" Header="Update Date" />
                 </DataGrid.Columns>
             </DataGrid>
 

@@ -21,6 +21,9 @@ public class AccountContext : DbContext
         modelBuilder.Entity<AccountInfo>()
             .Property(a => a.CreationDate)
             .HasDefaultValueSql("datetime('now', 'localtime')");
+        modelBuilder.Entity<AccountInfo>()
+            .Property(a => a.LastUpdated)
+            .HasDefaultValueSql("datetime('now', 'localtime')");
     }
     // 确保数据库和表已创建
     public void EnsureDatabaseCreated()

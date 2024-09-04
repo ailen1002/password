@@ -17,12 +17,23 @@ namespace password.ViewModels
         private string _accountNameLabel;
         private string _accountLabel;
         private string _passwordLabel;
+        private string _generateButton;
         private string _confirm;
         private string _cancel;
+        private bool _includeUppercase;
+        private bool _includeLowercase;
+        private bool _includeSpecialChar;
+        private bool _includeNumbers;
+        private string _upperCaseLetters;
+        private string _lowerCaseLetters;
+        private string _specialSymbol;
+        private string _numbers;
+        private string _passwordLength;
+        private string _passwordLengthInput;
+        private string _password;
         public string? AccountName { get; set; }
         public string? Account { get; set; }
-        public string? Password { get; set; }
-
+        public ReactiveCommand<Unit, Unit> GeneratePasswordCommand { get; }
         public ReactiveCommand<Unit, Unit> AddCommand { get; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
         public string AccountNameLabel
@@ -39,6 +50,66 @@ namespace password.ViewModels
         {
             get => _passwordLabel;
             set => this.RaiseAndSetIfChanged(ref _passwordLabel, value);
+        }
+        public string GenerateButton
+        {
+            get => _generateButton;
+            set => this.RaiseAndSetIfChanged(ref _generateButton, value);
+        }
+        public string UpperCaseLetters
+        {
+            get => _upperCaseLetters;
+            set => this.RaiseAndSetIfChanged(ref _upperCaseLetters, value);
+        }
+        public string LowerCaseLetters
+        {
+            get => _lowerCaseLetters;
+            set => this.RaiseAndSetIfChanged(ref _lowerCaseLetters, value);
+        }
+        public string SpecialSymbol
+        {
+            get => _specialSymbol;
+            set => this.RaiseAndSetIfChanged(ref _specialSymbol, value);
+        }
+        public string Numbers
+        {
+            get => _numbers;
+            set => this.RaiseAndSetIfChanged(ref _numbers, value);
+        }
+        public string PasswordLength
+        {
+            get => _passwordLength;
+            set => this.RaiseAndSetIfChanged(ref _passwordLength, value);
+        }
+        public bool IncludeUppercase
+        {
+            get => _includeUppercase;
+            set => this.RaiseAndSetIfChanged(ref _includeUppercase, value);
+        }
+        public bool IncludeLowercase
+        {
+            get => _includeLowercase;
+            set => this.RaiseAndSetIfChanged(ref _includeLowercase, value);
+        }
+        public bool IncludeSpecialChar
+        {
+            get => _includeSpecialChar;
+            set => this.RaiseAndSetIfChanged(ref _includeSpecialChar, value);
+        }
+        public bool IncludeNumbers
+        {
+            get => _includeNumbers;
+            set => this.RaiseAndSetIfChanged(ref _includeNumbers, value);
+        }
+        public string PasswordLengthInput
+        {
+            get => _passwordLengthInput;
+            set => this.RaiseAndSetIfChanged(ref _passwordLengthInput, value);
+        }
+        public string? Password
+        {
+            get => _password;
+            set => this.RaiseAndSetIfChanged(ref _password, value);
         }
         public string Confirm
         {
@@ -59,15 +130,52 @@ namespace password.ViewModels
             AccountNameLabel = _localizationService.GetString("AccountNameLabel");
             AccountLabel = _localizationService.GetString("AccountLabel");
             PasswordLabel = _localizationService.GetString("PasswordLabel");
+            GenerateButton = _localizationService.GetString("GenerateButton");
             Confirm = _localizationService.GetString("Confirm");
             Cancel = _localizationService.GetString("Cancel");
-            
+            UpperCaseLetters = _localizationService.GetString("UpperCaseLetters");
+            LowerCaseLetters = _localizationService.GetString("LowerCaseLetters");
+            SpecialSymbol = _localizationService.GetString("SpecialSymbol");
+            Numbers = _localizationService.GetString("Numbers");
+            PasswordLength = _localizationService.GetString("PasswordLength");
             // 添加账户命令
             AddCommand = ReactiveCommand.Create(AddAccount);
             // 取消命令，关闭窗口
             CancelCommand = ReactiveCommand.Create(CloseWindow);
+            // 生成密码命令
+            GeneratePasswordCommand = ReactiveCommand.Create(Generate);
         }
 
+        private void Generate()
+        {
+            var passwordLength = int.TryParse(PasswordLengthInput, out var length) ? length : 0;
+            // 根据用户选项生成密码
+            var generatedPassword = GeneratePassword(IncludeUppercase, IncludeLowercase, IncludeSpecialChar, IncludeNumbers, passwordLength);
+
+            // 将生成的密码显示在文本框中
+            Password = generatedPassword;
+        }
+        private static string GeneratePassword(bool includeUppercase, bool includeLowercase, bool includeSpecialChar, bool includeNumbers, int length)
+        {
+            const string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            const string specialChars = "!@#$%^&*()";
+            const string numberChars = "0123456789";
+
+            var allowedChars = "";
+            if (includeUppercase) allowedChars += uppercaseChars;
+            if (includeLowercase) allowedChars += lowercaseChars;
+            if (includeSpecialChar) allowedChars += specialChars;
+            if (includeNumbers) allowedChars += numberChars;
+
+            if (string.IsNullOrEmpty(allowedChars) || length <= 0)
+                return string.Empty;
+
+            var random = new Random();
+            return new string(Enumerable.Repeat(allowedChars, length)
+                .Select(s => s[random.Next(s.Length)])
+                .ToArray());
+        }
         private void AddAccount()
         {
             if (!string.IsNullOrEmpty(AccountName) && !string.IsNullOrEmpty(Account) && !string.IsNullOrEmpty(Password))
@@ -113,8 +221,14 @@ namespace password.ViewModels
             AccountNameLabel = _localizationService.GetString("AccountNameLabel");
             AccountLabel = _localizationService.GetString("AccountLabel");
             PasswordLabel = _localizationService.GetString("PasswordLabel");
+            GenerateButton = _localizationService.GetString("GenerateButton");
             Confirm = _localizationService.GetString("Confirm");
             Cancel = _localizationService.GetString("Cancel");
+            UpperCaseLetters = _localizationService.GetString("UpperCaseLetters");
+            LowerCaseLetters = _localizationService.GetString("LowerCaseLetters");
+            SpecialSymbol = _localizationService.GetString("SpecialSymbol");
+            Numbers = _localizationService.GetString("Numbers");
+            PasswordLength = _localizationService.GetString("PasswordLength");
         }
     }
 }

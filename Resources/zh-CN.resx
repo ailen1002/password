@@ -45,4 +45,22 @@
     <data name="PasswordLabel" xml:space="preserve">
         <value>密码</value>
     </data>
+    <data name="GenerateButton" xml:space="preserve">
+        <value>生成密码</value>
+    </data>
+    <data name="UpperCaseLetters" xml:space="preserve">
+        <value>大写字母</value>
+    </data>
+    <data name="LowerCaseLetters" xml:space="preserve">
+        <value>小写字母</value>
+    </data>
+    <data name="SpecialSymbol" xml:space="preserve">
+        <value>特殊符号</value>
+    </data>
+    <data name="Numbers" xml:space="preserve">
+        <value>数字</value>
+    </data>
+    <data name="PasswordLength" xml:space="preserve">
+        <value>密码长度</value>
+    </data>
 </root>

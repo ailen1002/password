@@ -45,4 +45,22 @@
     <data name="PasswordLabel" xml:space="preserve">
         <value>Password</value>
     </data>
+    <data name="GenerateButton" xml:space="preserve">
+        <value>Generate Password</value>
+    </data>
+    <data name="UpperCaseLetters" xml:space="preserve">
+        <value>UpperCaseLetters</value>
+    </data>
+    <data name="LowerCaseLetters" xml:space="preserve">
+        <value>LowerCaseLetters</value>
+    </data>
+    <data name="SpecialSymbol" xml:space="preserve">
+        <value>SpecialSymbol</value>
+    </data>
+    <data name="Numbers" xml:space="preserve">
+        <value>Numbers</value>
+    </data>
+    <data name="PasswordLength" xml:space="preserve">
+        <value>PasswordLength</value>
+    </data>
 </root>

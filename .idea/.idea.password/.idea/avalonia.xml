@@ -7,6 +7,7 @@
         <entry key="Views/AddAccount.axaml" value="password.csproj" />
         <entry key="Views/AddAccountWindow.axaml" value="password.csproj" />
         <entry key="Views/EditAccount.axaml" value="password.csproj" />
+        <entry key="Views/Login.axaml" value="password.csproj" />
         <entry key="Views/MainWindow.axaml" value="password.csproj" />
         <entry key="Views/Register.axaml" value="password.csproj" />
       </map>

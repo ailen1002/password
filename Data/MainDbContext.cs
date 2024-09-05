@@ -4,7 +4,7 @@ using password.Models;
 
 namespace password.Data;
 
-public class AccountContext : DbContext
+public class MainDbContext : DbContext
 {
     public DbSet<AccountInfo> AccountInfo { get; set; }
     

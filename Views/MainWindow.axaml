@@ -1,7 +1,7 @@
 <Window
-    Height="600"
+    Height="768"
     Title="PasswordManager"
-    Width="800"
+    Width="1024"
     mc:Ignorable="d"
     x:Class="password.Views.MainWindow"
     x:DataType="vm:MainWindowViewModel"

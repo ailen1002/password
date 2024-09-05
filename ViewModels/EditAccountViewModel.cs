@@ -14,22 +14,22 @@ namespace password.ViewModels
     {
         private readonly IAccountService _accountService;
         private readonly LocalizationService _localizationService;
-        private string _accountNameLabel;
-        private string _accountLabel;
-        private string _passwordLabel;
-        private string _generateButton;
+        private string _accountNameLabel= string.Empty;
+        private string _accountLabel= string.Empty;
+        private string _passwordLabel= string.Empty;
+        private string _generateButton= string.Empty;
         private bool _includeUppercase;
         private bool _includeLowercase;
         private bool _includeSpecialChar;
         private bool _includeNumbers;
-        private string _upperCaseLetters;
-        private string _lowerCaseLetters;
-        private string _specialSymbol;
-        private string _numbers;
-        private string _passwordLength;
-        private string _passwordLengthInput;
-        private string _confirm;
-        private string _cancel;
+        private string _upperCaseLetters= string.Empty;
+        private string _lowerCaseLetters= string.Empty;
+        private string _specialSymbol= string.Empty;
+        private string _numbers= string.Empty;
+        private string _passwordLength= string.Empty;
+        private string _passwordLengthInput= string.Empty;
+        private string _confirm= string.Empty;
+        private string _cancel= string.Empty;
         public string AccountNameLabel
         {
             get => _accountNameLabel;

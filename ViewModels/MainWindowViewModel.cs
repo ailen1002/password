@@ -18,13 +18,13 @@ namespace password.ViewModels
     {
         private readonly IAccountService _accountService;
         private readonly LocalizationService _localizationService;
-        private AccountInfo _selectedAccount;
+        private AccountInfo _selectedAccount = new AccountInfo();
         private bool _isDarkMode;
-        private IBrush _panelBackground;
-        private string _edit;
-        private string _delete;
-        private string _add;
-        private string _languageButtonText;
+        private IBrush _panelBackground = Brushes.White;
+        private string _edit= string.Empty;
+        private string _delete= string.Empty;
+        private string _add= string.Empty;
+        private string _languageButtonText= string.Empty;
         public ObservableCollection<AccountInfo> Accounts { get; set; }
         public AccountInfo SelectedAccount
         {
@@ -42,19 +42,11 @@ namespace password.ViewModels
         }
         private void ChangeTheme()
         {
-            var app = (App)Application.Current;
-            if (IsDarkMode)
-            {
-                // Dark 主题背景颜色
-                app.ChangeThemeVariant(ThemeVariant.Dark);
-                PanelBackground = Brushes.DarkMagenta;
-            }
-            else
-            {
-                // Light 主题背景颜色
-                app.ChangeThemeVariant(ThemeVariant.Light);
-                PanelBackground = Brushes.DodgerBlue;
-            }
+            if (Application.Current is not App app) return;
+            
+            var currentTheme = IsDarkMode ? ThemeVariant.Dark : ThemeVariant.Light;
+            app.ChangeThemeVariant(currentTheme);
+            PanelBackground = IsDarkMode? Brushes.DarkMagenta:Brushes.DodgerBlue;
         }
         public IBrush PanelBackground
         {

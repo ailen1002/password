@@ -10,7 +10,7 @@ using password.Models;
 
 namespace password.Services
 {
-    public class AccountService(AccountContext context) : IAccountService
+    public class AccountService(MainDbContext context) : IAccountService
     {
         // 通过构造函数注入数据库上下文，并确保数据库已创建
 

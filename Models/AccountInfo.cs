@@ -7,9 +7,9 @@ namespace password.Models
 {
     public class AccountInfo : ReactiveObject
     {
-        private string _accountName;
-        private string _account;
-        private string _password;
+        private string _accountName = string.Empty;
+        private string _account = string.Empty;
+        private string _password = string.Empty;
 
         [Key]
         public int Id { get; set; }
@@ -49,7 +49,7 @@ namespace password.Models
 
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public string CreationDate { get; set; }
+        public string CreationDate { get; set; } = string.Empty;
         public DateTime? LastUpdated { get; set; } = DateTime.Now;
 
         private void UpdateLastModified()

@@ -1,13 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using NLog;
 using password.Models;
+using password.Services;
 
 namespace password.Data;
 
 public class MainDbContext : DbContext
 {
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     public DbSet<AccountInfo> AccountInfo { get; set; } 
     public DbSet<User> Users { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -35,13 +34,13 @@ public class MainDbContext : DbContext
     {
         try
         {
-            Console.WriteLine(this.Database.EnsureCreated()
+            LogService.Info(Database.EnsureCreated()
                 ? "Database and tables created."
                 : "Database already exists.");
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "An error occurred");
+            LogService.Error(ex, "An error occurred");
         }
     }
 }

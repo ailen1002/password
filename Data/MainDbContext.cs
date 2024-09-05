@@ -8,7 +8,7 @@ namespace password.Data;
 public class MainDbContext : DbContext
 {
     private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-    public DbSet<AccountInfo> AccountInfo { get; set; }
+    public DbSet<AccountInfo> AccountInfo { get; set; } 
     public DbSet<User> Users { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

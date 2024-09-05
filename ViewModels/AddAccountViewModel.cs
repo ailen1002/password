@@ -3,15 +3,19 @@ using System.Linq;
 using System.Reactive;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using NLog;
 using ReactiveUI;
 using password.Interfaces;
 using password.Models;
 using password.Services;
 
 namespace password.ViewModels
+
 {
     public class AddAccountViewModel : ViewModelBase
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        
         private readonly IAccountService _accountService;
         private readonly LocalizationService _localizationService;
         private string _accountNameLabel= string.Empty;
@@ -210,11 +214,11 @@ namespace password.ViewModels
             try
             {
                 window.Close();
-                
+                Logger.Info("Window closed successfully.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to close window: {ex.Message}");
+                Logger.Error(ex, "Failed to close window.");
             }
         }
         private void UpdateLocalizedTexts()

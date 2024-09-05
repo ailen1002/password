@@ -1,11 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using NLog;
 using password.Models;
 
 namespace password.Data;
 
 public class MainDbContext : DbContext
 {
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     public DbSet<AccountInfo> AccountInfo { get; set; }
     public DbSet<User> Users { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -39,7 +41,7 @@ public class MainDbContext : DbContext
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error ensuring database creation: {ex.Message}");
+            Logger.Error(ex, "An error occurred");
         }
     }
 }

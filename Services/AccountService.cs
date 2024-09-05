@@ -48,7 +48,7 @@ namespace password.Services
         }
 
         // 更新现有账户
-        public void UpdateAccount(AccountInfo accountInfo)
+        public void UpdateAccount(AccountInfo? accountInfo)
         {
             ArgumentNullException.ThrowIfNull(accountInfo);
 

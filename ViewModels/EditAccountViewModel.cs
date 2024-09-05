@@ -110,12 +110,12 @@ namespace password.ViewModels
             get => _passwordLengthInput;
             set => this.RaiseAndSetIfChanged(ref _passwordLengthInput, value);
         }
-        public AccountInfo AccountInfo { get; set; }
+        public AccountInfo? AccountInfo { get; set; }
         public ReactiveCommand<Unit, Unit> GeneratePasswordCommand { get; }
         public ReactiveCommand<Unit, Unit> UpdateCommand { get; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
 
-        public EditAccountViewModel(IAccountService accountService, LocalizationService localizationService, AccountInfo account)
+        public EditAccountViewModel(IAccountService accountService, LocalizationService localizationService, AccountInfo? account)
         {
             _accountService = accountService;
             _localizationService = localizationService;
@@ -160,7 +160,7 @@ namespace password.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to close window: {ex.Message}");
+                LogService.Error($"Failed to close window: {ex.Message}");
             }
         }
         private void Generate()
@@ -170,7 +170,7 @@ namespace password.ViewModels
             var generatedPassword = GeneratePassword(IncludeUppercase, IncludeLowercase, IncludeSpecialChar, IncludeNumbers, passwordLength);
 
             // 将生成的密码显示在文本框中
-            AccountInfo.Password = generatedPassword;
+            if (AccountInfo != null) AccountInfo.Password = generatedPassword;
         }
         private static string GeneratePassword(bool includeUppercase, bool includeLowercase, bool includeSpecialChar, bool includeNumbers, int length)
         {

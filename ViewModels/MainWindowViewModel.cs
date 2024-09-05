@@ -18,7 +18,7 @@ namespace password.ViewModels
     {
         private readonly IAccountService _accountService;
         private readonly LocalizationService _localizationService;
-        private AccountInfo _selectedAccount = new AccountInfo();
+        private AccountInfo? _selectedAccount;
         private bool _isDarkMode;
         private IBrush _panelBackground = Brushes.White;
         private string _edit= string.Empty;
@@ -26,7 +26,7 @@ namespace password.ViewModels
         private string _add= string.Empty;
         private string _languageButtonText= string.Empty;
         public ObservableCollection<AccountInfo> Accounts { get; set; }
-        public AccountInfo SelectedAccount
+        public AccountInfo? SelectedAccount
         {
             get => _selectedAccount;
             set => this.RaiseAndSetIfChanged(ref _selectedAccount, value);
@@ -91,8 +91,16 @@ namespace password.ViewModels
             _localizationService.LanguageChanged += UpdateLocalizedTexts;
             
             ShowAddAccountWindowCommand = ReactiveCommand.Create(OpenAddAccountWindow);
-            EditCommand = ReactiveCommand.Create(OpenEditAccountWindow, this.WhenAnyValue(x => x.SelectedAccount).Select(account => account != null));
-            DeleteCommand = ReactiveCommand.Create(DeleteAccount, this.WhenAnyValue(x => x.SelectedAccount).Select(account => account != null));
+            EditCommand = ReactiveCommand.Create(
+                OpenEditAccountWindow, 
+                this.WhenAnyValue(x => x.SelectedAccount)
+                    .Select(account => account != null)
+            );
+            DeleteCommand = ReactiveCommand.Create(
+                DeleteAccount, 
+                this.WhenAnyValue(x => x.SelectedAccount)
+                    .Select(account => account != null)
+            );
             ChangeLanguageCommand = ReactiveCommand.Create(ChangeLanguage);
             LoadAccounts();
         }
@@ -136,7 +144,7 @@ namespace password.ViewModels
                 .ShowAsync();
 
             if (result != ButtonResult.Yes) return;
-            _accountService.DeleteAccount(SelectedAccount.Id);
+            if (SelectedAccount != null) _accountService.DeleteAccount(SelectedAccount.Id);
             LoadAccounts();
         }
         // 切换语言

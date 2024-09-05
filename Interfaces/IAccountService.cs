@@ -18,7 +18,7 @@ namespace password.Interfaces
         List<AccountInfo> SearchAccounts(string keyword);
 
         // 更新现有账户
-        void UpdateAccount(AccountInfo accountInfo);
+        void UpdateAccount(AccountInfo? accountInfo);
 
         // 删除账户
         void DeleteAccount(int accountId);

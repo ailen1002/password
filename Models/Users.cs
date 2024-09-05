@@ -2,7 +2,7 @@
 
 namespace password.Models;
 
-public class Users
+public class User
 {
     [Key]
     public int Id { get; set; }

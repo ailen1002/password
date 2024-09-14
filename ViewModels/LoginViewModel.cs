@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reactive;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using password.Models;
 using password.Services;
 using password.Views;
@@ -56,9 +58,12 @@ namespace password.ViewModels
                 HasError = false;
             }
         }
-        private void Cancel()
+        private static void Cancel()
         {
-            // Todo Cancel 功能
+            // 获取当前主窗口并关闭
+            if (Application.Current == null) return;
+            var mainWindow = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+            mainWindow?.Close();
         }
 
         private static void Register()

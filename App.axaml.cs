@@ -25,10 +25,11 @@ public class App : Application
             {
                 context.EnsureDatabaseCreated();
             }
-            var accountService = new AccountService(context); 
+            var accountService = new AccountService(context);
+            var userService = new UserService(context);
             desktop.MainWindow = new Login
             {
-                DataContext = new LoginViewModel(),
+                DataContext = new LoginViewModel(userService),
             };
         }
 

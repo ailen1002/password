@@ -4,11 +4,57 @@
     d:DesignWidth="800"
     mc:Ignorable="d"
     x:Class="password.Views.Register"
+    x:DataType="vm:RegisterViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:password.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StackPanel>
-        <TextBlock>这个是注册页面</TextBlock>
+    <StackPanel
+        HorizontalAlignment="Center"
+        Margin="20"
+        Spacing="15"
+        VerticalAlignment="Center"
+        Width="300">
+
+        <!--  错误提示文本  -->
+        <TextBlock
+            FontSize="14"
+            Foreground="Red"
+            IsVisible="{Binding HasError, Converter={StaticResource BooleanToIsVisibleConverter}}"
+            Text="{Binding ErrorMessage}" />
+
+        <!--  用户名  -->
+        <TextBlock Text="Username" />
+        <TextBox Text="{Binding UserName}" Width="200" />
+
+        <!--  密码  -->
+        <TextBlock Text="Password" />
+        <TextBox
+            PasswordChar="*"
+            Text="{Binding Password}"
+            Width="200" />
+
+        <!--  确认密码  -->
+        <TextBlock Text="Confirm Password" />
+        <TextBox
+            PasswordChar="*"
+            Text="{Binding ConfirmPassword}"
+            Width="200" />
+
+        <!--  按钮  -->
+        <StackPanel
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="10">
+            <Button
+                Command="{Binding RegisterCommand}"
+                Content="Register"
+                Width="100" />
+            <Button
+                Command="{Binding CancelCommand}"
+                Content="Cancel"
+                Width="100" />
+        </StackPanel>
     </StackPanel>
 </Window>

@@ -2,6 +2,7 @@
 using System.Reactive;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using password.Interfaces;
 using password.Models;
 using password.Services;
 using password.Views;
@@ -11,6 +12,7 @@ namespace password.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        private static IUserService _userService;
         private User? _user;
         private string _errorMessage;
         private bool _hasError;
@@ -37,8 +39,9 @@ namespace password.ViewModels
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
         public ReactiveCommand<Unit, Unit> OpenRegisterCommand { get; }
 
-        public LoginViewModel()
+        public LoginViewModel(IUserService userService)
         {
+            _userService = userService;
             User = new User();
             ErrorMessage = "请输入正确信息";
             LoginCommand = ReactiveCommand.Create(Login);
@@ -70,7 +73,7 @@ namespace password.ViewModels
         {
             var registerWindow = new Register()
             {
-                DataContext = new RegisterViewModel()
+                DataContext = new RegisterViewModel(_userService)
             };
             registerWindow.Show();
         }

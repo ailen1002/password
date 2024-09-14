@@ -26,9 +26,9 @@ public class App : Application
                 context.EnsureDatabaseCreated();
             }
             var accountService = new AccountService(context); 
-            desktop.MainWindow = new MainWindow
+            desktop.MainWindow = new Login
             {
-                DataContext = new MainWindowViewModel(accountService),
+                DataContext = new LoginViewModel(),
             };
         }
 

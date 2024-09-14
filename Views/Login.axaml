@@ -1,9 +1,94 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="password.Views.Login"
-        Title="Login">
-    Welcome to Avalonia!
+﻿<Window
+    Height="350"
+    Title="Login"
+    Width="450"
+    mc:Ignorable="d"
+    x:Class="password.Views.Login"
+    x:DataType="vm:LoginViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:password.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid
+        ColumnDefinitions="25*,25*,25*,25*"
+        Margin="20,50,20,50"
+        RowDefinitions="Auto, 10, Auto, 10, Auto, 10, Auto, 10, Auto">
+
+        <!--  错误提示文本  -->
+        <TextBlock
+            FontSize="14"
+            Foreground="Red"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            IsVisible="{Binding HasError, Converter={StaticResource BooleanToIsVisibleConverter}}"
+            Text="{Binding ErrorMessage}" />
+
+        <!--  用户名  -->
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="2"
+            Margin="0,0,0,20"
+            Text="Username"
+            VerticalAlignment="Center" />
+        <TextBox
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            Grid.Row="2"
+            HorizontalAlignment="Stretch"
+            Text="{Binding User.UserName}"
+            VerticalAlignment="Center" />
+
+        <!--  密码  -->
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="4"
+            Margin="0,0,0,20"
+            Text="Password"
+            VerticalAlignment="Center" />
+        <TextBox
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            Grid.Row="4"
+            HorizontalAlignment="Stretch"
+            PasswordChar="*"
+            Text="{Binding User.PasswordHash, Mode=TwoWay}"
+            VerticalAlignment="Center" />
+
+        <!--  按钮组  -->
+        <!--  登录按钮  -->
+        <Button
+            Command="{Binding LoginCommand}"
+            Content="Login"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="6"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center" />
+
+        <!--  取消按钮  -->
+        <Button
+            Command="{Binding CancelCommand}"
+            Content="Cancel"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Grid.Row="6"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center" />
+
+        <!--  注册按钮  -->
+        <Button
+            Command="{Binding OpenRegisterCommand}"
+            Content="Register"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.Row="8"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            VerticalAlignment="Center" />
+    </Grid>
+
 </Window>

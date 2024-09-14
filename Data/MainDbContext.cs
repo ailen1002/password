@@ -8,7 +8,7 @@ namespace password.Data;
 public class MainDbContext : DbContext
 {
     public DbSet<AccountInfo> AccountInfo { get; set; } 
-    public DbSet<User> Users { get; set; }
+    public DbSet<User> User { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)

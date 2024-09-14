@@ -2,9 +2,15 @@
     RequestedThemeVariant="Light"
     x:Class="password.App"
     xmlns="https://github.com/avaloniaui"
+    xmlns:converters="clr-namespace:password.Converters"
     xmlns:local="using:password"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
+
+    <Application.Resources>
+        <!--  注册 BooleanToIsVisibleConverter  -->
+        <converters:BooleanToIsVisibleConverter x:Key="BooleanToIsVisibleConverter" />
+    </Application.Resources>
 
     <Application.DataTemplates>
         <local:ViewLocator />

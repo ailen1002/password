@@ -39,7 +39,7 @@
             Grid.ColumnSpan="3"
             Grid.Row="2"
             HorizontalAlignment="Stretch"
-            Text="{Binding User.UserName}"
+            Text="{Binding UserName}"
             VerticalAlignment="Center" />
 
         <!--  密码  -->
@@ -55,7 +55,7 @@
             Grid.Row="4"
             HorizontalAlignment="Stretch"
             PasswordChar="*"
-            Text="{Binding User.PasswordHash, Mode=TwoWay}"
+            Text="{Binding PassWord, Mode=TwoWay}"
             VerticalAlignment="Center" />
 
         <!--  按钮组  -->

@@ -2,9 +2,9 @@
 using System.Reactive;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using password.Interfaces;
-using password.Models;
-using password.Services;
 using password.Views;
 using ReactiveUI;
 
@@ -12,17 +12,25 @@ namespace password.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private static IUserService _userService;
-        private User? _user;
+        private readonly IUserService _userService;
+        private readonly IAccountService _accountService;
+        private string _userName;
+        private string _passWord;
         private string _errorMessage;
         private bool _hasError;
-        // Property for binding
-        public User? User
+
+        public string UserName
         {
-            get => _user;
-            set => this.RaiseAndSetIfChanged(ref _user, value);
+            get => _userName;
+            set => this.RaiseAndSetIfChanged(ref _userName, value);
         }
-        // ErrorMessage Property
+
+        public string PassWord
+        {
+            get => _passWord;
+            set => this.RaiseAndSetIfChanged(ref _passWord, value);
+        }
+
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -39,37 +47,45 @@ namespace password.ViewModels
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
         public ReactiveCommand<Unit, Unit> OpenRegisterCommand { get; }
 
-        public LoginViewModel(IUserService userService)
+        public LoginViewModel(IUserService userService, IAccountService accountService)
         {
             _userService = userService;
-            User = new User();
+            _accountService = accountService;
             ErrorMessage = "请输入正确信息";
             LoginCommand = ReactiveCommand.Create(Login);
             CancelCommand = ReactiveCommand.Create(Cancel);
             OpenRegisterCommand = ReactiveCommand.Create(Register);
         }
-        private void Login()
+        private async void Login()
         {
-            if (User != null && (string.IsNullOrWhiteSpace(User.UserName) || string.IsNullOrWhiteSpace(User.PasswordHash)))
+            var user = await _userService.GetUserByUserNameAsync(UserName);
+            
+            if (user.PasswordHash != PassWord)
             {
-                ErrorMessage = "Username or Password cannot be empty!";
-                HasError = true;
+                var result = await MessageBoxManager.GetMessageBoxStandard("错误", "登录密码错误", ButtonEnum.Ok, Icon.Error).ShowAsync();
+
+                if (result != ButtonResult.Yes);
             }
             else
             {
-                ErrorMessage = string.Empty;
-                HasError = false;
+                var mainWindow = new MainWindow
+                {
+                    DataContext = new MainWindowViewModel(_accountService)
+                };
+                mainWindow.Show();
+                
+                if (Application.Current != null)
+                    (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow?.Close();
             }
         }
         private static void Cancel()
         {
-            // 获取当前主窗口并关闭
             if (Application.Current == null) return;
             var mainWindow = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
             mainWindow?.Close();
         }
 
-        private static void Register()
+        private void Register()
         {
             var registerWindow = new Register()
             {

@@ -25,7 +25,8 @@ public static class LogService
         };
         
         config.AddRule(LogLevel.Debug, LogLevel.Fatal, consoleTarget);
-        config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+        //暂时取消打印到文件
+        //config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
         
         LogManager.Configuration = config;
     }

@@ -23,13 +23,14 @@ public class App : Application
             var context = new MainDbContext();
             if (!context.Database.CanConnect())
             {
+                LogService.Error("Database connection failed.");
                 context.EnsureDatabaseCreated();
             }
             var accountService = new AccountService(context);
             var userService = new UserService(context);
             desktop.MainWindow = new Login
             {
-                DataContext = new LoginViewModel(userService),
+                DataContext = new LoginViewModel(userService,accountService),
             };
         }
 

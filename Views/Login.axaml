@@ -2,6 +2,7 @@
     Height="350"
     Title="Login"
     Width="450"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"
     x:Class="password.Views.Login"
     x:DataType="vm:LoginViewModel"

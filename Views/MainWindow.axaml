@@ -2,6 +2,7 @@
     Height="768"
     Title="PasswordManager"
     Width="1024"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"
     x:Class="password.Views.MainWindow"
     x:DataType="vm:MainWindowViewModel"

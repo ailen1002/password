@@ -2,6 +2,7 @@
     Height="350"
     Title="Add Account"
     Width="500"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"
     x:Class="password.Views.EditAccount"
     x:DataType="vm:EditAccountViewModel"

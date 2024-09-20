@@ -29,12 +29,10 @@ namespace password.Services
                 if (user == null)
                 {
                     LogService.Info($"User with username '{userName}' not found.");
+                    return null;
                 }
-                else
-                {
-                    LogService.Debug($"User found: {user.UserName}");
-                }
-
+        
+                LogService.Debug($"User found: {user.UserName}");
                 return user;
             }
             catch (Exception ex)
@@ -43,7 +41,6 @@ namespace password.Services
                 return null;
             }
         }
-
     }
 }
 

@@ -14,9 +14,9 @@ namespace password.ViewModels
     {
         private readonly IUserService _userService;
         private readonly IAccountService _accountService;
-        private string _userName;
-        private string _passWord;
-        private string _errorMessage;
+        private string _userName = string.Empty;
+        private string _passWord = string.Empty;
+        private string _errorMessage = string.Empty;
         private bool _hasError;
 
         public string UserName
@@ -59,12 +59,14 @@ namespace password.ViewModels
         private async void Login()
         {
             var user = await _userService.GetUserByUserNameAsync(UserName);
-            
+            if (user == null)
+            {
+                await MessageBoxManager.GetMessageBoxStandard("错误", "用户名错误", ButtonEnum.Ok, Icon.Error).ShowAsync();
+                return;
+            }
             if (user.PasswordHash != PassWord)
             {
-                var result = await MessageBoxManager.GetMessageBoxStandard("错误", "登录密码错误", ButtonEnum.Ok, Icon.Error).ShowAsync();
-
-                if (result != ButtonResult.Yes);
+                await MessageBoxManager.GetMessageBoxStandard("错误", "登录密码错误", ButtonEnum.Ok, Icon.Error).ShowAsync();
             }
             else
             {

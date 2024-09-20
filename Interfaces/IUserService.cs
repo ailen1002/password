@@ -6,5 +6,5 @@ namespace password.Interfaces;
 public interface IUserService
 {
     void Register(User user);
-    Task<User> GetUserByUserNameAsync(string userName);
+    Task<User?> GetUserByUserNameAsync(string userName);
 }

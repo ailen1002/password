@@ -13,10 +13,10 @@ namespace password.ViewModels;
 public class RegisterViewModel : ReactiveObject
 {
     private readonly IUserService _userService;
-    private string _userName;
-    private string _password;
-    private string _confirmPassword;
-    private string _errorMessage;
+    private string _userName = string.Empty;
+    private string _password = string.Empty;
+    private string _confirmPassword = string.Empty;
+    private string _errorMessage = string.Empty;
     private bool _hasError;
 
     public RegisterViewModel(IUserService userService)

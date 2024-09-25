@@ -64,43 +64,121 @@ public class FileService
 
     private DataTable ImportXlsx(string filePath)
     {
-        using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-        var workbook = new XSSFWorkbook(stream);
-        return ExcelToDataTable(workbook);
+        try
+        {
+            Console.WriteLine("开始读取 .xlsx 文件...");
+        
+            // 获取正确的文件路径
+            Console.WriteLine($"文件路径: {filePath}");
+
+            // 检查文件是否存在
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("文件不存在");
+                return null;
+            }
+
+            // 打开文件流用于读取 .xlsx 文件
+            using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            Console.WriteLine("文件流已打开，正在解析工作簿...");
+
+            // 使用 XSSFWorkbook 解析 .xlsx 文件
+            var workbook = new XSSFWorkbook(stream);
+            Console.WriteLine("工作簿已成功读取。");
+
+            // 将工作簿转换为 DataTable
+            return ExcelToDataTable(workbook);
+        }
+        catch (FileNotFoundException ex)
+        {
+            Console.WriteLine($"文件未找到: {ex.Message}");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine($"没有权限访问文件: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"读取 .xlsx 文件时发生错误: {ex.Message}");
+        }
+
+        return null;
     }
+
 
     private DataTable ImportCsv(string filePath)
     {
         var dt = new DataTable();
-        using var reader = new StreamReader(filePath);
-        var isFirstRow = true;
-        while (!reader.EndOfStream)
+    
+        try
         {
-            var line = reader.ReadLine();
-                
-            if (string.IsNullOrWhiteSpace(line))
-            {
-                continue;
-            }
+            Console.WriteLine("开始读取 .csv 文件...");
 
-            var values = line.Split(',');
+            // 打开文件流用于读取 .csv 文件
+            using var reader = new StreamReader(filePath);
+            Console.WriteLine("文件流已打开，正在解析 .csv 文件内容...");
 
-            if (isFirstRow)
+            bool isFirstRow = true;
+        
+            // 读取每一行数据
+            while (!reader.EndOfStream)
             {
-                foreach (var header in values)
+                var line = reader.ReadLine();
+            
+                // 跳过空行
+                if (string.IsNullOrWhiteSpace(line))
                 {
-                    dt.Columns.Add(header.Trim());
+                    continue;
                 }
-                isFirstRow = false;
+
+                // 按逗号分割每一行的数据
+                var values = line.Split(',');
+
+                if (isFirstRow)
+                {
+                    // 第一行为表头，创建列
+                    foreach (var header in values)
+                    {
+                        dt.Columns.Add(header.Trim());
+                    }
+                    isFirstRow = false;
+                }
+                else
+                {
+                    // 检查数据行长度是否匹配表头列数
+                    if (values.Length != dt.Columns.Count)
+                    {
+                        throw new Exception("CSV 数据行和表头列数不匹配！");
+                    }
+
+                    // 添加数据行
+                    var dataRow = dt.NewRow();
+                    for (var i = 0; i < values.Length; i++)
+                    {
+                        dataRow[i] = values[i].Trim();
+                    }
+                    dt.Rows.Add(dataRow);
+                }
             }
-            else
-            {
-                dt.Rows.Add(values.Select(v => (object)v).ToArray());
-            }
+
+            Console.WriteLine("CSV 文件解析完成。");
+        }
+        catch (FileNotFoundException ex)
+        {
+            Console.WriteLine($"文件未找到: {ex.Message}");
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine($"没有权限访问文件: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"读取 CSV 文件时发生错误: {ex.Message}");
         }
 
         return dt;
     }
+
 
     private DataTable ExcelToDataTable(IWorkbook workbook)
     {
@@ -136,6 +214,32 @@ public class FileService
         }
         
         return dt;
+    }
+    
+    private void PrintDataTable(DataTable dt)
+    {
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            Console.WriteLine("DataTable 为空或没有数据。");
+            return;
+        }
+
+        // 打印列名
+        foreach (DataColumn column in dt.Columns)
+        {
+            Console.Write($"{column.ColumnName}\t");
+        }
+        Console.WriteLine(); // 换行
+
+        // 打印行数据
+        foreach (DataRow row in dt.Rows)
+        {
+            foreach (var item in row.ItemArray)
+            {
+                Console.Write($"{item}\t");
+            }
+            Console.WriteLine(); // 换行
+        }
     }
 
 }

@@ -8,18 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/Services/FileExportService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/FileService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interfaces/IAccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/IAccountService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/en-US.resx" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/en-US.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/zh-CN.resx" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/zh-CN.resx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/AccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AccountService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/password.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/password.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/password.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/password.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/FileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/FileService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

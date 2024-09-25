@@ -10,6 +10,9 @@
 ​    Microsoft.Data.Sqlite
 ​    Microsoft.EntityFrameworkCore
 ​    Microsoft.EntityFrameworkCore.Sqlite.Core
+​    NLog
+​    NLog.Extensions.Logging
+​    NPOI
 
 ### 3, DataGird使用时候需要在App.axaml中添加
 

@@ -75,6 +75,22 @@
                     Content="{Binding Add}"
                     Margin="5,0" />
             </StackPanel>
+
+            <!--  左下角按钮  -->
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="10"
+                Orientation="Horizontal"
+                VerticalAlignment="Bottom">
+                <Button
+                    Command="{Binding ImportCommand}"
+                    Content="{Binding Import}"
+                    Margin="5,0" />
+                <Button
+                    Command="{Binding ExportCommand}"
+                    Content="{Binding Export}"
+                    Margin="5,0" />
+            </StackPanel>
         </Grid>
     </DockPanel>
 </Window>

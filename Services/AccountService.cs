@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MsBox.Avalonia;
@@ -22,7 +23,23 @@ namespace password.Services
             context.AccountInfo.Add(accountInfo);
             context.SaveChanges();
         }
+        // excel导入数据
+        public void AddAccounts(DataTable dt)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                var account = new AccountInfo
+                {
+                    AccountName = row["AccountName"].ToString() ?? throw new InvalidOperationException(),
+                    Account = row["Account"].ToString() ?? throw new InvalidOperationException(),
+                    Password = row["Password"].ToString() ?? throw new InvalidOperationException(),
+                };
 
+                context.AccountInfo.Add(account);
+            }
+
+            context.SaveChanges();
+        }
         // 查询所有账户
         public List<AccountInfo> LoadAccounts()
         {

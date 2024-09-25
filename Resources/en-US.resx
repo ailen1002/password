@@ -63,4 +63,10 @@
     <data name="PasswordLength" xml:space="preserve">
         <value>PasswordLength</value>
     </data>
+    <data name="Import" xml:space="preserve">
+        <value>Import</value>
+    </data>
+    <data name="Export" xml:space="preserve">
+        <value>Export</value>
+    </data>
 </root>

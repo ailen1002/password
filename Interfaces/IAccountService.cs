@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using password.Models;
 
 namespace password.Interfaces
@@ -8,6 +9,7 @@ namespace password.Interfaces
         // 添加新账户
         void AddAccount(AccountInfo accountInfo);
 
+        void AddAccounts(DataTable dataTable);
         // 查询所有账户
         List<AccountInfo> LoadAccounts();
 

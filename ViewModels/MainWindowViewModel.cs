@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Styling;
+using Avalonia.Threading;
 using password.Models;
 using password.Views;
 using ReactiveUI;
@@ -25,6 +28,7 @@ namespace password.ViewModels
     {
         private readonly IAccountService _accountService;
         private readonly LocalizationService _localizationService;
+        private readonly string _defaultExportPath;
         private AccountInfo? _selectedAccount;
         private bool _isDarkMode;
         private IBrush _panelBackground = Brushes.White;
@@ -112,7 +116,7 @@ namespace password.ViewModels
             Export = _localizationService.GetString("Export");
             // 订阅语言切换事件
             _localizationService.LanguageChanged += UpdateLocalizedTexts;
-            
+            _defaultExportPath = Path.Combine(AppContext.BaseDirectory, "TestRecord.csv");
             ShowAddAccountWindowCommand = ReactiveCommand.Create(OpenAddAccountWindow);
             EditCommand = ReactiveCommand.Create(
                 OpenEditAccountWindow, 
@@ -209,7 +213,6 @@ namespace password.ViewModels
                 MessageBoxManager.GetMessageBoxStandard("错误", ex.Message, ButtonEnum.OkAbort, Icon.Error);
             }
         }
-
         
         private async Task<IStorageFile?> OpenFilePickerAsync(FilePickerOpenOptions options)
         {
@@ -225,9 +228,97 @@ namespace password.ViewModels
             return result.Count > 0 ? result[0] : null;
         }
         
-        private void Export_click()
+        private async void Export_click()
         {
-            // Todo 导出功能实现
+            try
+            {
+                var fileExportService = new FileExportService();
+                var dt = GetDataTable(); // 获取要导出的数据
+                var useDefault = false;
+                string filePath;
+
+                if (useDefault)
+                {
+                    filePath = _defaultExportPath;
+                }
+                else
+                {
+                    var customFilePath = await ShowSaveFileDialog();
+                    Console.WriteLine(customFilePath);
+                    if (string.IsNullOrEmpty(customFilePath))
+                    {
+                        return; // 如果用户取消，则返回
+                    }
+                    filePath = customFilePath;
+                }
+
+                // 调用导出服务
+                fileExportService.Export(dt, filePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"导出过程中发生错误: {ex.Message}");
+                // 可以在这里添加更多的错误处理逻辑，例如显示错误消息给用户
+            }
+        }
+        
+        private async Task<string?> ShowSaveFileDialog()
+        {
+            var saveWindow = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.Windows
+                .FirstOrDefault(w => w.DataContext == this);
+            if (saveWindow == null)
+            {
+                throw new InvalidOperationException("没有活动窗口");
+            }
+
+            var savePickerOptions = new FilePickerSaveOptions
+            {
+                Title = "保存文件",
+                SuggestedFileName = "TestRecord.csv",
+                FileTypeChoices = new List<FilePickerFileType>
+                {
+                    new FilePickerFileType("CSV Files") { Patterns = new[] { "*.csv" } },
+                    new FilePickerFileType("Excel 97-2003 Files") { Patterns = new[] { "*.xls" } },
+                    new FilePickerFileType("Excel Files") { Patterns = new[] { "*.xlsx" } }
+                }
+            };
+
+            try
+            {
+                Console.WriteLine("尝试打开文件保存对话框...");
+                var result = await saveWindow.StorageProvider.SaveFilePickerAsync(savePickerOptions);
+                Console.WriteLine("文件保存对话框调用完成");
+
+                if (result == null)
+                {
+                    Console.WriteLine("文件对话框被取消。");
+                    return null;
+                }
+
+                Console.WriteLine("文件保存路径: " + result.Path.LocalPath);
+                return result.Path.LocalPath;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"发生异常: {ex.Message}");
+                return null;
+            }
+        }
+        
+        private DataTable GetDataTable()
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("ID", typeof(int));
+            dt.Columns.Add("AccountName", typeof(string));
+            dt.Columns.Add("Account", typeof(string));
+            dt.Columns.Add("Password", typeof(string));
+            dt.Columns.Add("CreationDate", typeof(string));
+            dt.Columns.Add("UpdateDate", typeof(string));
+            foreach (var account in Accounts)
+            {
+                dt.Rows.Add(account.Id, account.AccountName, account.Account, account.Password, account.CreationDate,account.LastUpdated);
+            }
+            return dt;
         }
         // 切换语言
         private void ChangeLanguage()

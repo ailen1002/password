@@ -9,7 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/FileService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/FileService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/FileExportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/FileExportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +22,16 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/2aade6beb02ea367fd97c4070a4198802fe61c03/src/libraries/System.Private.CoreLib/src/System/IO/FileStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4557a347027643efbb401d20a8f5eba449c38/6a/81d87509/WhenAnyMixin.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a0b45743773945a3bb67ca6440ae9eadf9c00/eb/081b6000/Window.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a39616e0542f4dedbc726cf1302e0c8614400/8d/ed57e2bf/ReflectionBindingExtension.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/29c7c382819af5bed3f388e599049659ed3ccda551e2ee69f598175c286ee9d/TopLevel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/64c077c15772bb4c699bdf49a561c536eb480867eabb4544519519e287c16/FilePickerOpenOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/81d12998a2b0f1d072b9e6edfb2611ade9fd8782e48a547faaedd88587fbc59/ReactiveCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/838997a4748bbb7dba5e9f83503dcf4dcf19408db4a72c6e819a5dbe62d98be1/FilePickerSaveOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8f5178316d8f8271b8f333bd87cd9e9f7da6764081a31277e776c6cdcb3a25a8/SystemDialog.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9b3409d6958149e39079187a00614a721d1200/_e3bef/IStorageProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9b3409d6958149e39079187a00614a721d1200/_f0429/IStorageFile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d489993b8fc9365570606c70f16434c231dcefac791e28ff71514c948d0/StyledElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/EditAccount.axaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -90,6 +98,7 @@
       <workItem from="1724717078317" duration="2280000" />
       <workItem from="1724803137883" duration="24215000" />
       <workItem from="1724889482452" duration="13688000" />
+      <workItem from="1727308967733" duration="18171000" />
     </task>
     <servers />
   </component>

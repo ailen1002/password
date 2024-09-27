@@ -55,6 +55,7 @@
             Grid.ColumnSpan="3"
             Grid.Row="4"
             HorizontalAlignment="Stretch"
+            KeyDown="PasswordBox_KeyDown"
             PasswordChar="*"
             Text="{Binding PassWord, Mode=TwoWay}"
             VerticalAlignment="Center" />

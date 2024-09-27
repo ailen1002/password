@@ -9,8 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/FileExportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/FileExportService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Login.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Login.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Login.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Login.axaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +98,8 @@
       <workItem from="1724717078317" duration="2280000" />
       <workItem from="1724803137883" duration="24215000" />
       <workItem from="1724889482452" duration="13688000" />
-      <workItem from="1727308967733" duration="18171000" />
+      <workItem from="1727308967733" duration="19317000" />
+      <workItem from="1727394642289" duration="2435000" />
     </task>
     <servers />
   </component>

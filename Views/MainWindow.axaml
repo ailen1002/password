@@ -35,8 +35,41 @@
                     IsChecked="{Binding IsDarkMode}"
                     Margin="0,0,10,0"
                     Width="30" />
+                <Button
+                    Background="Transparent"
+                    Command="{Binding ShowAccountInfoCommand}"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,10,0"
+                    Name="UserIconButton"
+                    VerticalAlignment="Center"
+                    Width="40">
+                    <!--  使用符号或图标库显示用户图标，例如 FontAwesome  -->
+                    <TextBlock FontSize="18" Text="👤" />
+                </Button>
             </StackPanel>
         </DockPanel>
+        <!--  抽屉面板：在右侧显示的账户信息面板  -->
+        <Border
+            Background="White"
+            HorizontalAlignment="Right"
+            IsVisible="{Binding IsAccountInfoVisible}"
+            Name="AccountInfoDrawer"
+            VerticalAlignment="Stretch"
+            Width="300">
+            <!--  这里是账户信息内容  -->
+            <StackPanel Margin="10">
+                <TextBlock
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Text="账户信息" />
+                <TextBlock Margin="0,10,0,0" Text="{Binding UserName}" />
+                <Button
+                    Command="{Binding LogoutCommand}"
+                    Content="注销"
+                    Margin="0,20,0,0" />
+            </StackPanel>
+        </Border>
         <Grid>
             <DataGrid
                 AutoGenerateColumns="False"

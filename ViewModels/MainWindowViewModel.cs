@@ -32,12 +32,14 @@ namespace password.ViewModels
         private AccountInfo? _selectedAccount;
         private bool _isDarkMode;
         private IBrush _panelBackground = Brushes.White;
+        private bool _isAccountInfoVisible;
         private string _edit= string.Empty;
         private string _delete= string.Empty;
         private string _add= string.Empty;
         private string _languageButtonText= string.Empty;
         private string _import= string.Empty;
         private string _export= string.Empty;
+        private string _UserName= string.Empty;
         public ObservableCollection<AccountInfo> Accounts { get; set; }
         public AccountInfo? SelectedAccount
         {
@@ -65,6 +67,16 @@ namespace password.ViewModels
         {
             get => _panelBackground;
             set => this.RaiseAndSetIfChanged(ref _panelBackground, value);
+        }
+        public bool IsAccountInfoVisible
+        {
+            get => _isAccountInfoVisible;
+            set => this.RaiseAndSetIfChanged(ref _isAccountInfoVisible, value);
+        }
+        public string UserName
+        {
+            get => _UserName;
+            set => this.RaiseAndSetIfChanged(ref _UserName, value);
         }
         public string LanguageButtonText
         {
@@ -102,6 +114,8 @@ namespace password.ViewModels
         public ReactiveCommand<Unit, Unit> ChangeLanguageCommand { get; }
         public ReactiveCommand<Unit, Unit> ImportCommand { get; }
         public ReactiveCommand<Unit, Unit> ExportCommand { get; }
+        public ReactiveCommand<Unit, Unit> ShowAccountInfoCommand { get; }
+        public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
         public MainWindowViewModel(IAccountService accountService)
         {
             _accountService = accountService;
@@ -131,6 +145,8 @@ namespace password.ViewModels
             ChangeLanguageCommand = ReactiveCommand.Create(ChangeLanguage);
             ImportCommand = ReactiveCommand.Create(Import_click);
             ExportCommand = ReactiveCommand.Create(Export_click);
+            ShowAccountInfoCommand = ReactiveCommand.Create(ToggleAccountInfoDrawer);
+            LogoutCommand = ReactiveCommand.Create(Logout);
             LoadAccounts();
         }
         
@@ -319,6 +335,15 @@ namespace password.ViewModels
                 dt.Rows.Add(account.Id, account.AccountName, account.Account, account.Password, account.CreationDate,account.LastUpdated);
             }
             return dt;
+        }
+        private void ToggleAccountInfoDrawer()
+        {
+            IsAccountInfoVisible = !IsAccountInfoVisible;  // 切换抽屉的显示状态
+        }
+
+        private void Logout()
+        {
+            //Todo 实现用户注销功能
         }
         // 切换语言
         private void ChangeLanguage()

@@ -9,8 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c1943cea-f5cf-4c39-8237-ae273b9eb775" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.password/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Login.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Login.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Login.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Login.axaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

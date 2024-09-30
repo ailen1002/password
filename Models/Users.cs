@@ -8,5 +8,5 @@ public class User
     public int Id { get; init; }
     
     [Required] public string UserName { get; set; } = string.Empty;
-    [Required] public string PasswordHash { get; set; } = string.Empty;
+    [Required] public string PassWordHash { get; set; } = string.Empty;
 }

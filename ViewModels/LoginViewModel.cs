@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Reactive;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using password.Interfaces;
+using password.Models;
 using password.Views;
 using ReactiveUI;
 
@@ -58,27 +60,37 @@ namespace password.ViewModels
         }
         private async void Login()
         {
-            var user = await _userService.GetUserByUserNameAsync(UserName);
-            if (user == null)
+            var loginResponse = await _userService.LoginAsync(UserName, PassWord);
+    
+            if (loginResponse.Result == LoginResult.Success)
             {
-                await MessageBoxManager.GetMessageBoxStandard("错误", "用户名错误", ButtonEnum.Ok, Icon.Error).ShowAsync();
-                return;
-            }
-            if (user.PasswordHash != PassWord)
-            {
-                await MessageBoxManager.GetMessageBoxStandard("错误", "登录密码错误", ButtonEnum.Ok, Icon.Error).ShowAsync();
+                OpenMainWindow();
             }
             else
             {
-                var mainWindow = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel(_accountService)
-                };
-                mainWindow.Show();
-                
-                if (Application.Current != null)
-                    (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow?.Close();
+                var errorMessage = loginResponse.Result == LoginResult.InvalidUsername 
+                    ? "用户名错误" 
+                    : "登录密码错误";
+
+                await ShowErrorMessageAsync(errorMessage);
             }
+        }
+        private void OpenMainWindow()
+        {
+            var mainWindow = new MainWindow
+            {
+                DataContext = new MainWindowViewModel(_accountService)
+            };
+            mainWindow.Show();
+
+            if (Application.Current != null)
+            {
+                (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow?.Close();
+            }
+        }
+        private static Task ShowErrorMessageAsync(string message)
+        {
+            return MessageBoxManager.GetMessageBoxStandard("错误", message, ButtonEnum.Ok, Icon.Error).ShowAsync();
         }
         private static void Cancel()
         {

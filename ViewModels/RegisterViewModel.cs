@@ -76,12 +76,8 @@ public class RegisterViewModel : ReactiveObject
         }
         HasError = false;
         ErrorMessage = string.Empty;
-        var user = new User
-        {
-            UserName = UserName,
-            PasswordHash = Password
-        };
-        _userService.Register(user);
+
+        _userService.Register(UserName,Password);
         
         Cancel();
     }

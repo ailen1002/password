@@ -9,5 +9,5 @@ public class LoggedInUser
     public string? PassWord { get; set; }
     
     public string? Role { get; set; }
-    public DateTime LoginTime { get; set; }
+    public string? LoginTime { get; set; }
 }

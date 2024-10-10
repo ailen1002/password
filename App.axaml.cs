@@ -28,10 +28,23 @@ public class App : Application
             }
             var accountService = new AccountService(context);
             var userService = new UserService(context);
-            desktop.MainWindow = new Login
+            // 检查是否已登录
+            if (userService.IsLoggedIn())
             {
-                DataContext = new LoginViewModel(userService,accountService),
-            };
+                // 如果用户已登录，打开主窗口
+                desktop.MainWindow = new MainWindow
+                {
+                    DataContext = new MainWindowViewModel(accountService),
+                };
+            }
+            else
+            {
+                // 用户未登录，显示登录窗口
+                desktop.MainWindow = new Login
+                {
+                    DataContext = new LoginViewModel(userService, accountService),
+                };
+            }
         }
 
         base.OnFrameworkInitializationCompleted();

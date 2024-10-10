@@ -166,7 +166,7 @@ namespace password.Services
             return Convert.ToBase64String(keyBytes);
         }
         
-        private string Encrypt(string plainText, string key)
+        private static string Encrypt(string plainText, string key)
         {
             using var aesAlg = Aes.Create();
     
@@ -188,11 +188,10 @@ namespace password.Services
             swEncrypt.Write(plainText); // Write the plaintext to encrypt
             swEncrypt.Close();
             
-            OnDecrypt();
             return Convert.ToBase64String(msEncrypt.ToArray()); // Return encrypted data as Base64
         }
 
-        private static string? Decrypt(string? cipherText, string key)
+        private string? Decrypt(string? cipherText, string key)
         {
             if (string.IsNullOrEmpty(cipherText) || string.IsNullOrEmpty(key)) return null;
 
@@ -213,6 +212,7 @@ namespace password.Services
             using var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read);
             using var srDecrypt = new StreamReader(csDecrypt);
 
+            OnDecrypt();
             return srDecrypt.ReadToEnd(); // Return decrypted text
         }
 

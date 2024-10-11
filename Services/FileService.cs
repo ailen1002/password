@@ -47,15 +47,15 @@ public class FileService
         }
         catch (FileNotFoundException ex)
         {
-            Console.WriteLine($"文件未找到: {ex.Message}");
+            Console.WriteLine($@"文件未找到: {ex.Message}");
         }
         catch (UnauthorizedAccessException ex)
         {
-            Console.WriteLine($"没有权限访问文件: {ex.Message}");
+            Console.WriteLine($@"没有权限访问文件: {ex.Message}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"读取 .xls 文件时发生错误: {ex.Message}");
+            Console.WriteLine($@"读取 .xls 文件时发生错误: {ex.Message}");
         }
         
         return null;
@@ -66,40 +66,40 @@ public class FileService
     {
         try
         {
-            Console.WriteLine("开始读取 .xlsx 文件...");
+            Console.WriteLine(@"开始读取 .xlsx 文件...");
         
             // 获取正确的文件路径
-            Console.WriteLine($"文件路径: {filePath}");
+            Console.WriteLine($@"文件路径: {filePath}");
 
             // 检查文件是否存在
             if (!File.Exists(filePath))
             {
-                Console.WriteLine("文件不存在");
+                Console.WriteLine(@"文件不存在");
                 return null;
             }
 
             // 打开文件流用于读取 .xlsx 文件
             using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            Console.WriteLine("文件流已打开，正在解析工作簿...");
+            Console.WriteLine(@"文件流已打开，正在解析工作簿...");
 
             // 使用 XSSFWorkbook 解析 .xlsx 文件
             var workbook = new XSSFWorkbook(stream);
-            Console.WriteLine("工作簿已成功读取。");
+            Console.WriteLine(@"工作簿已成功读取。");
 
             // 将工作簿转换为 DataTable
             return ExcelToDataTable(workbook);
         }
         catch (FileNotFoundException ex)
         {
-            Console.WriteLine($"文件未找到: {ex.Message}");
+            Console.WriteLine($@"文件未找到: {ex.Message}");
         }
         catch (UnauthorizedAccessException ex)
         {
-            Console.WriteLine($"没有权限访问文件: {ex.Message}");
+            Console.WriteLine($@"没有权限访问文件: {ex.Message}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"读取 .xlsx 文件时发生错误: {ex.Message}");
+            Console.WriteLine($@"读取 .xlsx 文件时发生错误: {ex.Message}");
         }
 
         return null;
@@ -112,11 +112,11 @@ public class FileService
     
         try
         {
-            Console.WriteLine("开始读取 .csv 文件...");
+            Console.WriteLine(@"开始读取 .csv 文件...");
 
             // 打开文件流用于读取 .csv 文件
             using var reader = new StreamReader(filePath);
-            Console.WriteLine("文件流已打开，正在解析 .csv 文件内容...");
+            Console.WriteLine(@"文件流已打开，正在解析 .csv 文件内容...");
 
             bool isFirstRow = true;
         
@@ -161,19 +161,19 @@ public class FileService
                 }
             }
 
-            Console.WriteLine("CSV 文件解析完成。");
+            Console.WriteLine(@"CSV 文件解析完成。");
         }
         catch (FileNotFoundException ex)
         {
-            Console.WriteLine($"文件未找到: {ex.Message}");
+            Console.WriteLine($@"文件未找到: {ex.Message}");
         }
         catch (UnauthorizedAccessException ex)
         {
-            Console.WriteLine($"没有权限访问文件: {ex.Message}");
+            Console.WriteLine($@"没有权限访问文件: {ex.Message}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"读取 CSV 文件时发生错误: {ex.Message}");
+            Console.WriteLine($@"读取 CSV 文件时发生错误: {ex.Message}");
         }
 
         return dt;
@@ -220,7 +220,7 @@ public class FileService
     {
         if (dt == null || dt.Rows.Count == 0)
         {
-            Console.WriteLine("DataTable 为空或没有数据。");
+            Console.WriteLine(@"DataTable 为空或没有数据。");
             return;
         }
 

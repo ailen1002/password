@@ -9,6 +9,7 @@ public class MainDbContext : DbContext
 {
     public DbSet<AccountInfo> AccountInfo { get; set; } 
     public DbSet<User> User { get; set; }
+    public DbSet<Parameter> Parameters { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -28,6 +29,8 @@ public class MainDbContext : DbContext
         modelBuilder.Entity<User>()
             .Property(u => u.UserName)
             .HasMaxLength(100);
+        modelBuilder.Entity<Parameter>()
+            .Property(p => p.DecryptionCount);
     }
     // 确保数据库和表已创建
     public void EnsureDatabaseCreated()

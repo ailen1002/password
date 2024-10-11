@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using password.Data;
@@ -11,13 +13,15 @@ using password.Models;
 
 namespace password.Services
 {
-    public class UserService : IUserService
+    public partial class UserService : IUserService
     {
         private readonly MainDbContext _context;
         private readonly string _userFilePath;
-        private int _decryptionCount = 0;
-        private const int MaxDecryptionCount = 5;
+        private Parameter? _parameter;
+        private const int MaxDecryptionCount = 30;
         private string _encryptionKey = "";
+        [GeneratedRegex(@"^[a-zA-Z0-9\+/]*={0,2}$", RegexOptions.Compiled)]
+        private static partial Regex MyRegex();
         private static readonly JsonSerializerOptions JsonOptions = new()
         {
             WriteIndented = true, // 格式化输出
@@ -34,6 +38,8 @@ namespace password.Services
             // 根据需要选择路径
             var userDataPathProvider = new UserDataPathProvider(useUserDirectory);
             _userFilePath = userDataPathProvider.UserFilePath;
+            
+            LoadDecryptionCount();
         }
         public void Register(string username, string password)
         {
@@ -117,23 +123,38 @@ namespace password.Services
             }
             if (CurrentUser == null) return false;
             // 解密登录时间
-            var decryptedLoginTime = Decrypt(CurrentUser.LoginTime, CurrentUser.Role);
-
-            Console.WriteLine(decryptedLoginTime);
-
-            if (!DateTime.TryParse(decryptedLoginTime, out var loginTime)) return false;
-            
-            Console.WriteLine((DateTime.Now - loginTime).TotalDays);
-            // 检查登录时间是否在7天有效期内
-            if ((DateTime.Now - loginTime).TotalDays <= 1)
+            if (CurrentUser.LoginTime != null && !IsBase64String(CurrentUser.LoginTime))
             {
-                return true; // 登录仍在有效期内
+                Console.WriteLine(@"LoginTime 不是有效的 Base64 字符串");
+                return false;
             }
-            else
+        
+            if (CurrentUser.Role != null && !IsBase64String(CurrentUser.Role))
             {
-                Logout(); // 超过有效期，自动登出
+                Console.WriteLine(@"Role 不是有效的 Base64 字符串");
+                return false;
             }
-
+            // 进行解密
+            try
+            {
+                var decryptedLoginTime = Decrypt(CurrentUser.LoginTime, CurrentUser.Role);
+                Console.WriteLine($@"Decrypted Login Time: {decryptedLoginTime}");
+                if (!DateTime.TryParse(decryptedLoginTime, out var loginTime)) return false;
+                // 检查登录时间是否在当天有效期内
+                if ((DateTime.Now - loginTime).TotalDays <= 1)
+                {
+                    return true; // 登录仍在有效期内
+                }
+                else
+                {
+                    Logout(); // 超过有效期，自动登出
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($@"解密失败: {ex.Message}");
+                return false;
+            }
             return false;
         }
         public async Task<User?> GetUserByUserNameAsync(string userName)
@@ -165,7 +186,18 @@ namespace password.Services
             rng.GetBytes(keyBytes);
             return Convert.ToBase64String(keyBytes);
         }
-        
+
+        private static bool IsBase64String(string input)
+        {
+            // 如果输入为空或长度不是4的倍数，直接返回 false
+            if (string.IsNullOrEmpty(input) || input.Length % 4 != 0)
+            {
+                return false;
+            }
+
+            // 使用生成的 MyRegex() 正则表达式匹配输入字符串
+            return MyRegex().IsMatch(input);
+        }
         private static string Encrypt(string plainText, string key)
         {
             using var aesAlg = Aes.Create();
@@ -191,7 +223,7 @@ namespace password.Services
             return Convert.ToBase64String(msEncrypt.ToArray()); // Return encrypted data as Base64
         }
 
-        private string? Decrypt(string? cipherText, string key)
+        private string? Decrypt(string? cipherText, string? key)
         {
             if (string.IsNullOrEmpty(cipherText) || string.IsNullOrEmpty(key)) return null;
 
@@ -216,14 +248,29 @@ namespace password.Services
             return srDecrypt.ReadToEnd(); // Return decrypted text
         }
 
+        private void LoadDecryptionCount()
+        {
+            // 尝试从数据库中加载 Parameter
+            _parameter = _context.Parameters.FirstOrDefault();
+
+            if (_parameter != null) return;
+            _parameter = new Parameter { DecryptionCount = 0 };
+            _context.Parameters.Add(_parameter);
+            _context.SaveChanges();
+        }
+        
         private void OnDecrypt()
         {
-            _decryptionCount++;
-            if (_decryptionCount < MaxDecryptionCount) return;
+            if (_parameter == null) return;
+            _parameter.DecryptionCount++;
+            Console.WriteLine(_parameter.DecryptionCount);
+            _context.SaveChanges();
+            if (_parameter.DecryptionCount < MaxDecryptionCount) return;
             _encryptionKey = GenerateKey();
+            _parameter.DecryptionCount = 0; // 重置计数器
+            _context.SaveChanges(); // 保存到数据库
             // 重置计数器并更新密钥存储
             UpdateConfig(_encryptionKey);
-            _decryptionCount = 0;
         }
         
         private async void UpdateConfig(string newKey)
@@ -233,7 +280,7 @@ namespace password.Services
             // 更新密钥
             if (CurrentUser != null) CurrentUser.Role = newKey;
             // 写回配置文件
-            var jsonData = JsonSerializer.Serialize(CurrentUser, JsonOptions);;
+            var jsonData = JsonSerializer.Serialize(CurrentUser, JsonOptions);
             await File.WriteAllTextAsync(_userFilePath, jsonData);
         }
     }

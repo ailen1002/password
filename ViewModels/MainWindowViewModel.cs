@@ -273,7 +273,7 @@ namespace password.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"导出过程中发生错误: {ex.Message}");
+                Console.WriteLine($@"导出过程中发生错误: {ex.Message}");
                 // 可以在这里添加更多的错误处理逻辑，例如显示错误消息给用户
             }
         }
@@ -301,13 +301,13 @@ namespace password.ViewModels
 
             try
             {
-                Console.WriteLine("尝试打开文件保存对话框...");
+                Console.WriteLine(@"尝试打开文件保存对话框...");
                 var result = await saveWindow.StorageProvider.SaveFilePickerAsync(savePickerOptions);
-                Console.WriteLine("文件保存对话框调用完成");
+                Console.WriteLine(@"文件保存对话框调用完成");
 
                 if (result == null)
                 {
-                    Console.WriteLine("文件对话框被取消。");
+                    Console.WriteLine(@"文件对话框被取消。");
                     return null;
                 }
 
@@ -316,7 +316,7 @@ namespace password.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"发生异常: {ex.Message}");
+                Console.WriteLine($@"发生异常: {ex.Message}");
                 return null;
             }
         }

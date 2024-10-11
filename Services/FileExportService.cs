@@ -32,7 +32,7 @@ namespace password.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error exporting file: {ex.Message}");
+                Console.WriteLine($@"Error exporting file: {ex.Message}");
                 throw; // 可以根据需要选择是否抛出异常
             }
         }
@@ -43,11 +43,11 @@ namespace password.Services
             {
                 var workbook = new HSSFWorkbook();
                 SaveExcel(workbook, dt, filePath);
-                Console.WriteLine($"Successfully exported to .xls at {filePath}");
+                Console.WriteLine($@"Successfully exported to .xls at {filePath}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error exporting .xls file: {ex.Message}");
+                Console.WriteLine($@"Error exporting .xls file: {ex.Message}");
                 throw;
             }
         }
@@ -58,11 +58,11 @@ namespace password.Services
             {
                 var workbook = new XSSFWorkbook();
                 SaveExcel(workbook, dt, filePath);
-                Console.WriteLine($"Successfully exported to .xlsx at {filePath}");
+                Console.WriteLine($@"Successfully exported to .xlsx at {filePath}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error exporting .xlsx file: {ex.Message}");
+                Console.WriteLine($@"Error exporting .xlsx file: {ex.Message}");
                 throw;
             }
         }
@@ -92,11 +92,11 @@ namespace password.Services
                     writer.WriteLine();
                 }
 
-                Console.WriteLine($"Successfully exported to .csv at {filePath}");
+                Console.WriteLine($@"Successfully exported to .csv at {filePath}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error exporting .csv file: {ex.Message}");
+                Console.WriteLine($@"Error exporting .csv file: {ex.Message}");
                 throw;
             }
         }
@@ -131,7 +131,7 @@ namespace password.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving Excel file: {ex.Message}");
+                Console.WriteLine($@"Error saving Excel file: {ex.Message}");
                 throw;
             }
         }
